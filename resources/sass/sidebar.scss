@@ -1,0 +1,11 @@
+.sidebar {
+
+    background: #0A1113;
+    width: 363px;
+    height: 100vh;
+    float: left;
+
+    & + .content {
+        width: calc( 100vw - 363px );
+    }
+}
