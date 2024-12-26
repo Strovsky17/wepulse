@@ -1,5 +1,5 @@
 @extends('page')
-@extends('misc.sidebar')
+@extends('misc.sidebar', [ "page" => "profile", "subpage" => "" ])
 @extends('misc.topbar')
 
 @section('content')
