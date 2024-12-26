@@ -6,8 +6,20 @@
 
     <div class="sidebar-menu">
         <!-- SETUP -->
-        <a href="setup" class="waves-effect">
-            <span>Setup</span>
+        <a href="/login" class="waves-effect">
+            <span>login</span>
+        </a>
+        <!-- SETUP -->
+        <a href="/profile" class="waves-effect">
+            <span>profile</span>
+        </a>
+        <!-- SETUP -->
+        <a href="/ativos" class="waves-effect">
+            <span>ativos</span>
+        </a>
+        <!-- SETUP -->
+        <a href="/ativos/create" class="waves-effect">
+            <span>ativos criar</span>
         </a>
     </div>
 </div>
