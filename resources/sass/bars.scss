@@ -169,3 +169,12 @@
         
     }
 }
+
+.topbar {
+
+    padding: 60px;
+     
+    @media all and (max-width:960px) {        
+        padding: 20px 40px;
+    }
+}

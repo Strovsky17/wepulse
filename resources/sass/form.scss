@@ -11,6 +11,16 @@
             margin-bottom: 10px;
             margin-left: 20px;
             text-transform: uppercase;
+            display: table;
+        }
+        
+        span {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 44px;
+            text-align: left;
+            height: 44px;
+            padding: 0 20px ;
         }
 
         input[type='text'] {

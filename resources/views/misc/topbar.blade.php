@@ -1,7 +1,7 @@
 @section('topbar')
 <div class="topbar">
-    <div class='title'>
-        sadlajsdlkasd
-    </div>
+    <h1 class='title'>
+        {{ $title }}
+    </h1>
 </div>
 @endsection
