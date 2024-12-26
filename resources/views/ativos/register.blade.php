@@ -1,6 +1,6 @@
 @extends('page')
-@extends('misc.sidebar')
-@extends('misc.topbar')
+@extends('misc.sidebar', [ "page" => "register", "subpage" => "" ])
+@extends('misc.topbar', ["title" => __('menu.register')])
 
 @section('content')
     <div class='panel form row'>

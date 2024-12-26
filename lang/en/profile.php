@@ -11,4 +11,7 @@ return [
     'localityPlaceHolder' => 'Lisboa, Portugal',
     'contact' => 'Contacto',
     'email' => 'E-mail',
+    'userInfo' => 'Dados de Identificação',
+    'save' => 'Guardar',
+    'edit' => 'Editar',
 ];
