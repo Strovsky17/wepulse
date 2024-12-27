@@ -25,10 +25,10 @@
                     <i class="fa-solid fa-server"></i> {{ __('menu.ativos') }}
                 </a>
                 <div>
-                    <a href='/ativos' class='{{ $subpage == "ativos" ? "active" : "" }}' >
+                    <a href='/ativos/ativos' class='{{ $subpage == "ativos" ? "active" : "" }}' >
                         {{ __('menu.ativos') }}
                     </a>
-                    <a href='/register' class='{{ $subpage == "register" ? "active" : "" }}' >
+                    <a href='/ativos/register' class='{{ $subpage == "register" ? "active" : "" }}' >
                         {{ __('menu.register') }}
                     </a>
                     <a href='/ativos/alerts' class='{{ $subpage == "alerts" ? "active" : "" }}' >

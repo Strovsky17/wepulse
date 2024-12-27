@@ -1,3 +1,9 @@
+@extends('page')
+@extends('misc.sidebar', [ "page" => "ativos", "subpage" => "" ])
+@extends('misc.topbar', ["title" => __('menu.ativos')])
+
+@section('content')
+
 <div class='panel form row panel-geral-ativos'>
     <div class='panel-header'>
         <h2>{!!__("register.userActives")!!}</h2>
@@ -10,3 +16,4 @@
         </div>
     </div>
 </div>
+@endsection

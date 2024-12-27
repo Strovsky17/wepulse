@@ -43,7 +43,8 @@ return [
    'nextmaintenance' => 'Próxima Manutenção',
    'nextmaintenancePlaceHolder' => 'Selecionar Responsável',
    'guarantee' => 'Garantia',
-   'createlabel' => 'Criar Etiqueta',  
+   'createlabel' => 'Criar Etiqueta', 
+   'informationBtn' => 'Clique no botão para baixar a etiqueta com o código de barras e logo personalizado',
 
    'userActives' => 'Todos os Ativos',
    'search' => 'Pesquisar...',
