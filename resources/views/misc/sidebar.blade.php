@@ -40,6 +40,9 @@
                     <a href='/ativos/history' class='{{ $subpage == "history" ? "active" : "" }}' >
                         {{ __('menu.history') }}
                     </a>
+                    <a href='/ativos/edit' class='{{ $subpage == "edit" ? "active" : "" }}' >
+                        {{ __('menu.edit') }}
+                    </a>
                 </div>
             </div>
 

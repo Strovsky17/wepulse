@@ -20,6 +20,11 @@ return [
     'training' => 'Formação',
     'cncsReports' => 'Relatório Anual CNCS',
     'archives' => 'Arquivo',
+    'edit' => 'Editar',
+    'alerts' => 'Alertas',
+    'historty' => 'Histórico',  
+    'customFields' => 'Campos personalizados',
+    
 
     
     

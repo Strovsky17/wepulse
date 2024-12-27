@@ -50,7 +50,24 @@ return [
    'search' => 'Pesquisar...',
 
    'createAlert' => 'Criar Alerta',
-      
+   'alertType' => 'Tipo de Alerta',
+   'alertTypePlaceHolder' => 'Selecione o tipo de alerta',
+   'alertDate' => 'Data do Alerta',
+   'alertActive' => 'Ativo',
+   'alertActivePlaceHolder' => 'Selecionar Ativo',
+   'alertCategory' => 'Categoria',
+   'alertCategoryPlaceHolder' => 'Selecione a categoria',
+   'allAlerts' => 'Todos os alertas',
+
+   'history' => 'Histórico',
+
+   'add' => 'Adicionar',
+   'designation' => 'Designação',
+   'designationPlaceHolder' => 'Escreva aqui...',
+   'values' => 'Valores',
+   'valuesPlaceHolder' => 'Escolher',
+   
+   
 
    
 ];
