@@ -1,8 +1,7 @@
-
 <div class='panel form row panel-geral-register'>
 
     <div class='panel-header'>
-        <h2>{!!__("register.register")!!}</h2>
+        <h2>{!!__("register.userRegister")!!}</h2>
 
         <button class='btn btn-primary' rule='save' action='save'>{{ __("form.save") }}</button>
         <button class='btn btn-secondary' rule='edit' action='edit'>{{ __("form.edit") }}</button>
@@ -104,7 +103,7 @@
         
         window.addEventListener('load', () => {
 
-            new PanelProfile( document.querySelector('.panel-geral-register') );
+            new PanelProfile( document.querySelector('.panel-profile-info') );
         })
     </script>
 

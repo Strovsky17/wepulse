@@ -1,6 +1,6 @@
 @extends('page')
-@extends('misc.sidebar', [ "page" => "geral", "subpage" => "" ])
-@extends('misc.topbar', ["title" => __('menu.geral')])
+@extends('misc.sidebar', [ "page" => "register", "subpage" => "" ])
+@extends('misc.topbar', ["title" => __('menu.ativos')])
 
 @section('content')
 

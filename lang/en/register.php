@@ -1,7 +1,7 @@
 <?php
 
 return [
-   'register' => 'Registar',
+   'userRegister' => 'Registar',
    'name' => 'Nome do Ativo',
    'namePlaceHolder' => 'Inserir Nome',
    'image' => 'Imagem do Dispositivo',
@@ -33,6 +33,21 @@ return [
    'description' => 'Descrição do Risco',
    'descriptionPlaceHolder' => 'Escreva aqui...',
    'responsable' => 'Responsável',
-   'responsablePlaceHolder' => 'João Rodrigues',   
+   'responsablePlaceHolder' => 'João Rodrigues',
+   'lastmaintenance' => 'Última Manutenção',
+   'date' => 'Data',
+   'maintenance' => 'Quem Fez Manutenção',
+   'maintenancePlaceHolder' => 'João Rodrigues',
+   'observation' => 'Observações',
+   'observationPlaceHolder' => 'Escreva aqui...',
+   'nextmaintenance' => 'Próxima Manutenção',
+   'nextmaintenancePlaceHolder' => 'Selecionar Responsável',
+   'guarantee' => 'Garantia',
+   'createlabel' => 'Criar Etiqueta',  
+
+   'userActives' => 'Todos os Ativos',
+   'search' => 'Pesquisar...',
+      
+
    
 ];
