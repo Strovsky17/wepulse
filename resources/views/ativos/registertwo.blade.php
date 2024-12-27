@@ -1,6 +1,6 @@
 <div class='panel form row panel-geralregister-registertwo'>
 
-<div class='panel-header'>
+    <div class='panel-header'>
         <h2>{!!__("register.lastmaintenance")!!}</h2>
 
         <button class='btn btn-primary' rule='save' action='save'>{{ __("form.save") }}</button>
@@ -31,5 +31,4 @@
         <input type="text" class="form-control" name='guarantee' placeholder='{!!__("")!!}' required>
     </div>
 
-</div>
 </div>

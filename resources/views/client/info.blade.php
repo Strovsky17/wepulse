@@ -1,6 +1,5 @@
 <div class='panel form row panel-profile-info'>
 
-
     <div class='panel-header'>
         <h2>{!!__("profile.userInfo")!!}</h2>
 
@@ -22,7 +21,7 @@
 
     <div class='form-group col-md-6'>
         <label>{!! __('profile.address') !!}</label>
-        <span rule='edit'>'{!!__("profile.addressPlaceHolder")!!}'</span>
+        <span rule='edit'>{!!__("profile.addressPlaceHolder")!!}</span>
         <input type="text" class="form-control" name='address' placeholder='{!!__("profile.addressPlaceHolder")!!}' required rule='save' to='span'/>
     </div>
   
@@ -34,7 +33,7 @@
     
     <div class='form-group col-md-4'>
         <label>{!! __('profile.locality') !!}</label>
-        <span rule='edit'>'{!!__("profile.localityPlaceHolder")!!}'</span>  
+        <span rule='edit'>{!!__("profile.localityPlaceHolder")!!}</span>  
         <input type="text" class="form-control" name='locality' placeholder='{!!__("profile.localityPlaceHolder")!!}' required rule='save' to='span'/>
     </div>
     
@@ -52,11 +51,9 @@
 
     <input type='hidden' name='edit' value='0' />
     <script>
-        
         window.addEventListener('load', () => {
 
             new PanelProfile( document.querySelector('.panel-profile-info') );
         })
     </script>
-    
 </div>
