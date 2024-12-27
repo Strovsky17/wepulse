@@ -1,9 +1,5 @@
-@extends('page')
-@extends('misc.sidebar', [ "page" => "register", "subpage" => "" ])
-@extends('misc.topbar', ["title" => __('menu.ativos')])
 
-@section('content')
-<div class='panel form row'>
+<div class='panel form row panel-geral-register'>
 
     <div class='panel-header'>
         <h2>{!!__("register.register")!!}</h2>
@@ -103,5 +99,13 @@
         <label>{!! __('register.responsable') !!}</label>
         <input type="text" class="form-control" name='responsable' placeholder='{!!__("register.responsablePlaceHolder")!!}' required>
     </div>
+
+    <script>
+        
+        window.addEventListener('load', () => {
+
+            new PanelProfile( document.querySelector('.panel-geral-register') );
+        })
+    </script>
+
 </div>
-@endsection

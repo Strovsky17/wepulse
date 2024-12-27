@@ -1,4 +1,4 @@
-<div class='panel form row panel-users-info'>
+<div class='panel form row panel-profile-users'>
     <div class='panel-header'>
         <h2>{!!__("profile.userUsers")!!}</h2>
 
