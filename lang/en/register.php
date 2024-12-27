@@ -48,6 +48,8 @@ return [
 
    'userActives' => 'Todos os Ativos',
    'search' => 'Pesquisar...',
+
+   'createAlert' => 'Criar Alerta',
       
 
    
