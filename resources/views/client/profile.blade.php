@@ -5,5 +5,6 @@
 @section('content')
 
    @include('client/info')
-
+   @include('client/users')
+   
 @endsection

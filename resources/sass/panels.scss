@@ -4,15 +4,23 @@
 
         display: table;
         width: 100%;
-        margin-bottom: 20px;
+        
 
         h2 {
             float:left;
+            margin-bottom: 20px;
         }
 
         button { 
             float: right;
             margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .search {
+
+            float: right;
+            margin-bottom: 20px;
         }
     }
 }

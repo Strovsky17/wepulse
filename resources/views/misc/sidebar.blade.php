@@ -44,49 +44,71 @@
             </div>
 
             <div class='menu-link'>
-                <a href='/incidents' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-thin fa-triangle-exclamation"></i> {{ __('menu.incidents') }}
                 </a>
+                <div>
+                    <a href='/incidents' class='{{ $subpage == "incidents" ? "active" : "" }}' >
+                        {{ __('menu.incidents') }}
+                    </a>
+                    <a href='/incidents/registerIncidents' class='{{ $subpage == "registerIncidents" ? "active" : "" }}' >
+                        {{ __('menu.registerIncidents') }}
+                    </a>
+                    <a href='/incidents/problems' class='{{ $subpage == "problems" ? "active" : "" }}' >
+                        {{ __('menu.problems') }}
+                    </a>
+                    <a href='/incidents/reportAnalysis' class='{{ $subpage == "reportAnalysis" ? "active" : "" }}' >
+                        {{ __('menu.reportAnalysis') }}
+                    </a>
+                </div>
             </div>
            
             <div class='menu-link'>
-                <a href='/security-policies' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-light fa-lock-keyhole"></i> {{ __('menu.securityPolicies') }}
                 </a>
+                <div>
+                    <a href='/securityPolicies/internalPolicies' class='{{ $subpage == "active" ? "active" : "" }}' >
+                        {{ __('menu.internalPolicies') }}
+                    </a>
+                    <a href='/securityPolicies/loadPolicies' class='{{ $subpage == "register" ? "active" : "" }}' >
+                        {{ __('menu.loadPolicies') }}
+                    </a>
+                </div>
             </div>
             
             <div class='menu-link'>
-                <a href='/risk' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-regular fa-chart-mixed"></i> {{ __('menu.risk') }}
                 </a>
             </div>
 
             <div class='menu-link'>
-                <a href='/comunications' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-light fa-file-circle-info"></i> {{ __('menu.comunications') }}
                 </a>
             </div>
             
             <div class='menu-link'>
-                <a href='/security-plans' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-light fa-shield-check"></i> {{ __('menu.securityPlans') }}
                 </a>
             </div>
            
             <div class='menu-link'>
-                <a href='/training' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-light fa-graduation-cap"></i> {{ __('menu.training') }}
                 </a>
             </div>
             
             <div class='menu-link'>
-                <a href='/CNCS-reports' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-regular fa-file-chart-column"></i> {{ __('menu.cncsReports') }}
                 </a>
             </div>
            
             <div class='menu-link'>
-                <a href='/archives' class='{{ $page == "" ? "active" : "" }}  disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-light fa-box-archive"></i> {{ __('menu.archives') }}
                 </a>
             </div>

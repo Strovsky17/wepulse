@@ -14,4 +14,7 @@ return [
     'userInfo' => 'Dados de Identificação',
     'save' => 'Guardar',
     'edit' => 'Editar',
+    'userUsers' => 'Responsável',
+    'search' => 'Pesquisa...',
+    'searchPlaceHolder' => 'Pesquisa...',
 ];

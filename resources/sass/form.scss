@@ -34,6 +34,24 @@
             height: 44px;
             padding: 0 20px ;
         }
+
+        &.search {
+
+            position: relative;
+
+            .fa-magnifying-glass{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 40px;
+                line-height: 44px;
+                text-align: center;
+            }
+
+            input {
+                padding-left:40px;
+            }
+        }
     }
 
 }
