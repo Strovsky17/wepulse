@@ -9,7 +9,7 @@
 
         <div class='user'>
             <div class='image'></div>
-            <div class='name'>Layout</div>
+            <div class='name'>{{ auth()->user()->name }}</div>
         </div>
 
         <div class="sidebar-menu">
@@ -21,7 +21,7 @@
             </div>
 
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-solid fa-server"></i> {{ __('menu.ativos') }}
                 </a>
                 <div>
@@ -47,7 +47,7 @@
             </div>
 
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-thin fa-triangle-exclamation"></i> {{ __('menu.incidents') }}
                 </a>
                 <div>
@@ -67,7 +67,7 @@
             </div>
            
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-light fa-lock-keyhole"></i> {{ __('menu.securityPolicies') }}
                 </a>
                 <div>
@@ -81,37 +81,37 @@
             </div>
             
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-regular fa-chart-mixed"></i> {{ __('menu.risk') }}
                 </a>
             </div>
 
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-light fa-file-circle-info"></i> {{ __('menu.comunications') }}
                 </a>
             </div>
             
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-light fa-shield-check"></i> {{ __('menu.securityPlans') }}
                 </a>
             </div>
            
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-light fa-graduation-cap"></i> {{ __('menu.training') }}
                 </a>
             </div>
             
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-regular fa-file-chart-column"></i> {{ __('menu.cncsReports') }}
                 </a>
             </div>
            
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
                     <i class="fa-light fa-box-archive"></i> {{ __('menu.archives') }}
                 </a>
             </div>
@@ -119,9 +119,7 @@
     </div>
 
     <script>
-        
         window.addEventListener('load', () => {
-
             new PanelMenu( document.querySelector('.sidebar') );
         })
     </script>
