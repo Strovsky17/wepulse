@@ -82,20 +82,32 @@ window.PanelUsers = function( $scope, __config )
     {
         new Panel( this );
         this.initTable();
+
+        _this.parameters.__search = '';
     }
 
     this.rules = {
         
     }
 
-    this.actions = {
+    this.actions = { }
+
+    this.process = () => {
+
+        if( this.table != null )
+        {
+            this.table.$search.value = this.parameters.__search;
+            this.table.search();
+        }
     }
 
     // Initialize table
     this.initTable = () => {
 
-        new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( document.querySelector('.table'),{
             rowsPerPage: 10,
+            perPage: false,
+            search: false,
             /*lang: {
                 create: "{{__('table.create')}}",
                 next: "{{__('table.next')}}",
@@ -112,8 +124,12 @@ window.PanelUsers = function( $scope, __config )
             },
             data: __config.data,
             actions:[
-                { 'cls':'primary', 'icon':'pencil', label: '', callback: (d) => { console.log('a') } },
-                { 'cls':'primary', 'icon':'pencil', label: '', callback: (d) => { console.log('a') } },
+                { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
+                    alert('Ver User') 
+                }},
+                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => { 
+                    alert('Remove User') 
+                }},
             ]
         });
 

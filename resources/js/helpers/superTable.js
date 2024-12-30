@@ -17,7 +17,8 @@ window.SuperTable = function( $scope, config )
             prev: 'Prev',
             countPage: 'Showing $1 to $2 of $3 rows',
             noResults: 'No results found',
-            create: 'Create'
+            create: 'Create',
+            rowsPerPage: 'Rows per page',
         }
     }
 
@@ -70,7 +71,9 @@ window.SuperTable = function( $scope, config )
         _this.$divSearch = components.createDiv('table-options-search');        
         _this.$divSearch.appendChild( _this.$search );
         _this.$divSearch.appendChild( components.createI('fa-regular fa-magnifying-glass') );
-        _this.$options.appendChild( _this.$divSearch );
+
+        if( _this.config.search !== false )
+            _this.$options.appendChild( _this.$divSearch );
         
         // Show number per page
         let $perPage = components.createDiv('perPage');
@@ -83,8 +86,12 @@ window.SuperTable = function( $scope, config )
 
         _this.$select = components.createSelect( 'form-select form-select-lg form-group', options );
         _this.$select.value = _this.config.rowsPerPage;
-        $perPage.appendChild( components.createH('5', 'Rows Per Page:') );
+        $perPage.appendChild( components.createH('5', _this.config.lang.rowsPerPage) );
         $perPage.appendChild( _this.$select );
+
+        if( _this.config.perPage !== false )
+            _this.$options.appendChild($perPage);
+
         $scope.appendChild(_this.$options);
 
 
@@ -98,7 +105,7 @@ window.SuperTable = function( $scope, config )
 
         // PagTotal
         _this.$paginationTotal = components.createDiv( 'total' );
-        _this.$options.appendChild(_this.$paginationTotal);
+        //_this.$options.appendChild(_this.$paginationTotal);
     }
 
     /**
@@ -333,8 +340,8 @@ window.SuperTable = function( $scope, config )
         let list = components.createDiv('box-zapify d-none');
         let menu = components.createI('fa-solid fa-ellipsis-vertical','');
 
-        options.appendChild(menu); 
-        options.appendChild(list);
+        //options.appendChild(menu); 
+        //options.appendChild(list);
         
         let flag = false;
 
@@ -353,7 +360,7 @@ window.SuperTable = function( $scope, config )
                         c.callback( data );
                 });
                 
-                list.appendChild(b);
+                ca.appendChild(b);
                 flag = true;
             }
         }
