@@ -11,5 +11,10 @@ return [
     'equipment' => 'Equipamento',
     'category' => 'Categoria',
     'register' => 'Registo',
+    'risk' => 'Risco',
+    'responsable' => 'Responsável',
+    'alerts' => 'Alertas',
+    'type' => 'Tipo',
+    'active' => 'Ativo',
   
 ];

@@ -11,8 +11,7 @@
         </div>
     </div>
 
-    <div class='table'>
-
+    <div class='table'></div>
 
     <script>
         window.addEventListener('load', () => {
@@ -28,5 +27,4 @@
             });
         })
     </script>
-    </div>
 </div>

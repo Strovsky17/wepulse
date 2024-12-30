@@ -18,18 +18,15 @@
     <div class='table'></div>
     <script>
         window.addEventListener('load', () => {
-            window.pUsers = new PanelUsers( document.querySelector('.panel-ativos'), {
+            window.pAtivo = new PanelAtivo( document.querySelector('.panel-ativo'), {
                 lang: {
                     ...{!! json_encode( __('table') )  !!},
                 },
                 data: [
-                    { id:1, name:'Ana Fernandes', phone: '+999 999 999 999', email: 'anafernandes@gmail.com', role: 'Administrador' },
-                    { id:2, name:'Ana Fernandes', phone: '+999 999 999 999', email: 'anafernandes@gmail.com', role: 'Administrador' },
-                    { id:3, name:'Ana Fernandes', phone: '+999 999 999 999', email: 'anafernandes@gmail.com', role: 'Administrador' },
+                    { id:1, equipment:'Ana Fernandes', category: '+999 999 999 999', risk: 'anafernandes@gmail.com', responsable: 'Administrador', alerts: 'sem alertas' },
                 ]
             });
         })
     </script>
-</div>
 </div>
 @endsection
