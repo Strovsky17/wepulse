@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class='table'></div>
+    <div class='table'>
 
 
     <script>
@@ -28,4 +28,5 @@
             });
         })
     </script>
+    </div>
 </div>

@@ -16,4 +16,3 @@
         <input type="date" class="form-control" name='maintenance' placeholder='{!!__("register.valuesPlaceHolder")!!}' required>
     </div>
 </div>
-</div>
