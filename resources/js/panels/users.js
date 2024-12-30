@@ -1,3 +1,38 @@
+// Login
+window.PanelLogin = function( $scope, __config )
+{
+    let _this = this;
+
+    this.$scope = $scope;
+
+    // Init the constructor
+    this._construtor = function()
+    {
+        new Panel( this );
+    }
+
+    this.rules = {}
+
+    this.actions = {
+        
+        login: (f) => {
+
+            if(f.validate())
+            {
+                axios.post('login',{ email: f.parameters.__email, password: f.parameters.__password }) 
+                    .then(() => {
+                        window.location.href = '/';
+                    })
+                    .catch(error => {
+                        alert('An error occurred.');
+                    });
+            }
+        }
+    }
+
+    _this._construtor();
+}
+
 // Show Company profile
 window.PanelProfile = function( $scope, __config )
 {
