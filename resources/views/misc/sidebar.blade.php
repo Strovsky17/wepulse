@@ -32,7 +32,7 @@
                         {{ __('menu.register') }}
                     </a>
                     <a href='/ativos/alerts' class='{{ $subpage == "alerts" ? "active" : "" }}' >
-                        {{ __('menu.alerts') }}
+                        {{ __('menu.createalerts') }}
                     </a>
                     <a href='/ativos/inventory' class='{{ $subpage == "inventory" ? "active" : "" }}' >
                         {{ __('menu.inventory') }}

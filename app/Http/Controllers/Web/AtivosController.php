@@ -17,11 +17,11 @@ class AtivosController extends Controller
     }
     function register()
     {
-        return view( 'ativos.geralregister' );
+        return view( 'ativos.register.register' );
     }
     function alerts()
     {
-        return view( 'ativos.geralalerts' );
+        return view( 'ativos.alerts.alert' );
     }
     function history()
     {
@@ -29,7 +29,7 @@ class AtivosController extends Controller
     }
     function edit()
     {
-        return view( 'ativos.geraledit' );
+        return view( 'ativos.edit.edit' );
     }
     function inventory()
     {
