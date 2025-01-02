@@ -120,7 +120,7 @@ window.PanelUsers = function( $scope, __config )
                 name: __config.lang.name,
                 phone: __config.lang.phone,
                 email: __config.lang.email,
-                role: __config.lang.role
+                role: __config.lang.role,
             },
             data: __config.data,
             actions:[

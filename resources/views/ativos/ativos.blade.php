@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class='panel form row panel-geral-ativos'>
+<div class='panel form row panel-ativos'>
     <div class='panel-header'>
         <h2>{!!__("register.userActives")!!}</h2>
 
@@ -15,5 +15,18 @@
             <input type="text" class="form-control" name='search' placeholder='{!! __("register.search") !!}' required>
         </div>
     </div>
+    <div class='table'></div>
+    <script>
+        window.addEventListener('load', () => {
+            window.pAtivo = new PanelAtivo( document.querySelector('.panel-ativo'), {
+                lang: {
+                    ...{!! json_encode( __('table') )  !!},
+                },
+                data: [
+                    { id:1, equipment:'Ana Fernandes', category: '+999 999 999 999', risk: 'anafernandes@gmail.com', responsable: 'Administrador', alerts: 'sem alertas' },
+                ]
+            });
+        })
+    </script>
 </div>
 @endsection

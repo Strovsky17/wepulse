@@ -31,5 +31,9 @@ class AtivosController extends Controller
     {
         return view( 'ativos.geraledit' );
     }
+    function inventory()
+    {
+        return view( 'ativos.inventory' );
+    }
     
 }

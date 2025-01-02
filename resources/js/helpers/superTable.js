@@ -51,9 +51,10 @@ window.SuperTable = function( $scope, config )
     this.createOptions = function()
     {
         _this.$options = components.createDiv('table-options');
-
+     
         // Create Button
         if( _this.config.create != null )
+            
         {
             if( typeof(_this.config.create) == 'string' )
                 _this.$options.appendChild(  components.createA( _this.config.lang.create, 'btn btn-zapify btn-primary mb-2', { href: _this.config.create } )  );
@@ -63,8 +64,9 @@ window.SuperTable = function( $scope, config )
                 $a.onclick = _this.config.create;
                 _this.$options.appendChild( $a );
             }
-            
+          
         }
+      
 
         // Search
         _this.$search = components.createInput( 'text', 'form-control form-search', { placeholder: _this.config.lang.search } );

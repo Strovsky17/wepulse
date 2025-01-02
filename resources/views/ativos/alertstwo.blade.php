@@ -10,4 +10,18 @@
             <input type="text" class="form-control" name='search' placeholder='{!! __("profile.search") !!}' required>
         </div>
     </div>
+
+    <div class='table'></div>
+    <script>
+        window.addEventListener('load', () => {
+            window.pAtivo = new PanelAlerttwo( document.querySelector('.panel-ativo'), {
+                lang: {
+                    ...{!! json_encode( __('table') )  !!},
+                },
+                data: [
+                    { id:1, equipment:'Ana Fernandes', category: '+999 999 999 999', risk: 'anafernandes@gmail.com', responsable: 'Administrador', alerts: 'sem alertas' },
+                ]
+            });
+        })
+    </script>
 </div>

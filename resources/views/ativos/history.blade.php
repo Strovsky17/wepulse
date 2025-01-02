@@ -16,6 +16,20 @@
             <input type="text" class="form-control" name='search' placeholder='{!! __("profile.search") !!}' required>
         </div>
     </div>
+    <div class='table'>
+    <script>
+        window.addEventListener('load', () => {
+            window.pTest = new PanelTests( document.querySelector('.panel-history'), {
+                lang: {
+                    ...{!! json_encode( __('table') )  !!},
+                },
+                data: [
+                    { id:1, equipment:'Ana Fernandes', category: '+999 999 999 999', register: 'anafernandes@gmail.com', date: 'Administrador' },
+                ]
+            });
+        })
+    </script>
+    </div>
 </div>
 
 @endsection
