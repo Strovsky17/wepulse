@@ -19,7 +19,7 @@
     <div class='table'>
     <script>
         window.addEventListener('load', () => {
-            window.pTest = new PanelTests( document.querySelector('.panel-history'), {
+            window.pHistory = new PanelHistory( document.querySelector('.panel-history'), {
                 lang: {
                     ...{!! json_encode( __('table') )  !!},
                 },

@@ -21,7 +21,7 @@
             </div>
 
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-solid fa-server"></i> {{ __('menu.ativos') }}
                 </a>
                 <div>
