@@ -5,6 +5,7 @@ import './helpers/superTable';
 import './helpers/components';
 import './panels/menu';
 import './panels/users';
+import './panels/clients';
 import './panels/active';
 import './panels/history';
 import './panels/alerts';
