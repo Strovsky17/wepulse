@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'id' => 'id',
     'name' => 'Nome',
     'phone' => 'Telefone',
     'email' => 'E-mail',
@@ -16,5 +17,11 @@ return [
     'alerts' => 'Alertas',
     'type' => 'Tipo',
     'active' => 'Ativo',
-  
+    'search' => 'Perquisar',
+    'next' => '>',
+    'prev' => '<',
+    'countPage' => 'Showing $1 to $2 of $3 rows',
+    'noResults' => 'Não foram encontrados resultados',
+    'create' => 'Criar',
+    'rowsPerPage' => 'Conteúdos por pagina',
 ];

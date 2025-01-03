@@ -14,6 +14,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body class='BO'>    
+    
+    <script> window.tableLang = { ... {!! json_encode( __('table') ) !!} }  </script>
+
     @yield('sidebar')
     <div class='content'>
         @yield('topbar')

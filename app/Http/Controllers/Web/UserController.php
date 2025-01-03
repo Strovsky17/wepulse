@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\User;
 
+use App\Services\DatabaseService;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;

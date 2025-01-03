@@ -16,7 +16,7 @@ window.Panel = function( panel )
     // Open template
     panel.open = ( data, successCallBack, closeCallBack ) => {
 
-        panel.$scope.classList.remove('d-none');
+        panel.$scope.classList.add('open');
         
         panel.successCallBack = successCallBack;
         panel.closeCallBack = closeCallBack;
@@ -34,7 +34,7 @@ window.Panel = function( panel )
    
     // Open template
     panel.close = () => {
-        panel.$scope.classList.add('d-none');
+        panel.$scope.classList.remove('open');
     
         // Open with display options
         if( panel.closeCallBack != undefined )

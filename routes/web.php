@@ -23,9 +23,13 @@ Route::middleware(['auth:sanctum'])->get('/ativos/inventory', 'App\Http\Controll
 Route::middleware(['auth:sanctum'])->get('/ativos/history', 'App\Http\Controllers\Web\AtivosController@history');
 Route::middleware(['auth:sanctum'])->get('/ativos/edit', 'App\Http\Controllers\Web\AtivosController@edit');
 
-
+/**
+ * Admin
+ */
+Route::middleware(['auth:sanctum'])->get('/admin', 'App\Http\Controllers\Web\AdminController@admin');
 
 /**
  * Requests
  */
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
+Route::resource('client', 'App\Http\Controllers\Api\ClientController');

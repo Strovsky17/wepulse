@@ -12,13 +12,13 @@ window.SuperTable = function( $scope, config )
         create: null,
         paginationUrl: '',
         lang: {
-            search: 'Search',
-            next: 'Next',
-            prev: 'Prev',
-            countPage: 'Showing $1 to $2 of $3 rows',
-            noResults: 'No results found',
-            create: 'Create',
-            rowsPerPage: 'Rows per page',
+            search: window.tableLang.search,
+            next: window.tableLang.next,
+            prev: window.tableLang.prev,
+            countPage: window.tableLang.countPage,
+            noResults: window.tableLang.noResults,
+            create: window.tableLang.create,
+            rowsPerPage: window.tableLang.rowsPerPage,
         }
     }
 
