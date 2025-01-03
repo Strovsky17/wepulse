@@ -4,7 +4,7 @@
 
 @section('content')
 
-   @include('ativos/alerts')
-   @include('ativos/alertstwo')
+   @include('ativos/alerts/alert-create')
+   @include('ativos/alerts/alert-list')
    
 @endsection

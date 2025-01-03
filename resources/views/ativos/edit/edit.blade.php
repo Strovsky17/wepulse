@@ -4,7 +4,7 @@
 
 @section('content')
 
-   @include('ativos/edit')
-   @include('ativos/edittwo')
+   @include('ativos/edit/edit-add')
+   @include('ativos/edit/edit-list')
    
 @endsection

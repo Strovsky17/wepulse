@@ -13,6 +13,6 @@
 
     <div class='form-group col-md-5'>
         <label>{!! __('register.values') !!}</label>
-        <input type="date" class="form-control" name='maintenance' placeholder='{!!__("register.valuesPlaceHolder")!!}' required>
+        <input type="text" class="form-control" name='maintenance' placeholder='{!!__("register.valuesPlaceHolder")!!}' required>
     </div>
 </div>

@@ -4,7 +4,7 @@ return [
     'ativos' => 'Ativos',
     'profile' => 'Perfil',
     'register' => 'Registo',
-    'alerts' => 'Criar Alertas',
+    'alerts' => 'Alertas',
     'inventory' => 'Inventário',
     'history' => 'Histórico',
     'incidents' => 'Incidentes',
@@ -21,12 +21,7 @@ return [
     'cncsReports' => 'Relatório Anual CNCS',
     'archives' => 'Arquivo',
     'edit' => 'Editar',
-    'alerts' => 'Alertas',
     'historty' => 'Histórico',  
     'customFields' => 'Campos personalizados',
-    
-
-    
-    
-
-];
+    'createalerts' => 'Criar Alertas',
+];  

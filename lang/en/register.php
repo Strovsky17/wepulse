@@ -29,7 +29,9 @@ return [
    'risk' => 'Risco', 
    'riskPlaceHolder' => 'Escolher',
    'cost' => 'Custo de Aquisição',
+   'costPlaceHolder' => '999 9999€',
    'value' => 'Valor Atual',
+   'valuePlaceHolder' => '999 999€',
    'description' => 'Descrição do Risco',
    'descriptionPlaceHolder' => 'Escreva aqui...',
    'responsable' => 'Responsável',
@@ -45,6 +47,8 @@ return [
    'guarantee' => 'Garantia',
    'createlabel' => 'Criar Etiqueta', 
    'informationBtn' => 'Clique no botão para baixar a etiqueta com o código de barras e logo personalizado',
+   'registerText' => 'Ativos diretamente acessíveis publicamente através da Internet?',
+   'registerText2' =>'Se sim, passa obrigatório a ser comunicado ao CNCS.',
 
    'userActives' => 'Todos os Ativos',
    'search' => 'Pesquisar...',
@@ -67,7 +71,7 @@ return [
    'values' => 'Valores',
    'valuesPlaceHolder' => 'Escolher',
    
-   
+   'activeName' => 'Nome do Ativo',
 
    
 ];

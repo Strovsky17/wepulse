@@ -4,8 +4,8 @@
 
 @section('content')
 
-   @include('ativos/register')
-   @include('ativos/registertwo')
-   @include('ativos/registerthree')
+   @include('ativos/register/register-register')
+   @include('ativos/register/register-maintenance')
+   @include('ativos/register/register-label')
    
 @endsection

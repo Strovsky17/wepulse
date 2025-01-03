@@ -21,7 +21,7 @@
             </div>
 
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }} disabled' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
                     <i class="fa-solid fa-server"></i> {{ __('menu.ativos') }}
                 </a>
                 <div>
@@ -32,7 +32,7 @@
                         {{ __('menu.register') }}
                     </a>
                     <a href='/ativos/alerts' class='{{ $subpage == "alerts" ? "active" : "" }}' >
-                        {{ __('menu.alerts') }}
+                        {{ __('menu.createalerts') }}
                     </a>
                     <a href='/ativos/inventory' class='{{ $subpage == "inventory" ? "active" : "" }}' >
                         {{ __('menu.inventory') }}

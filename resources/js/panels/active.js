@@ -1,5 +1,5 @@
 // Show user of the BO
-window.PanelHistory = function( $scope, __config )
+window.PanelActive = function( $scope, __config )
 {
     let _this = this;
 
@@ -32,7 +32,8 @@ window.PanelHistory = function( $scope, __config )
     // Initialize table
     this.initTable = () => {
 
-        this.table = new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( document.querySelector('.table'),
+        {
             rowsPerPage: 10,
             perPage: false,
             search: false,
@@ -48,8 +49,9 @@ window.PanelHistory = function( $scope, __config )
             columns: {
                 equipment: __config.lang.equipment,
                 category: __config.lang.category,
-                register: __config.lang.register,
-                date: __config.lang.date,
+                risk: __config.lang.risk,
+                responsable: __config.lang.responsable,
+                alerts: __config.lang.alerts,
             },
             data: __config.data,
             actions:[

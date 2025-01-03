@@ -19,7 +19,7 @@ Route::middleware(['auth:sanctum'])->get('/profile', 'App\Http\Controllers\Web\C
 Route::middleware(['auth:sanctum'])->get('/ativos/ativos', 'App\Http\Controllers\Web\AtivosController@ativos');
 Route::middleware(['auth:sanctum'])->get('/ativos/register', 'App\Http\Controllers\Web\AtivosController@register');
 Route::middleware(['auth:sanctum'])->get('/ativos/alerts', 'App\Http\Controllers\Web\AtivosController@alerts');
-Route::middleware(['auth:sanctum'])->get('/ativos/inventory', 'App\Http\Controllers\Web\AtivosController@register');
+Route::middleware(['auth:sanctum'])->get('/ativos/inventory', 'App\Http\Controllers\Web\AtivosController@inventory');
 Route::middleware(['auth:sanctum'])->get('/ativos/history', 'App\Http\Controllers\Web\AtivosController@history');
 Route::middleware(['auth:sanctum'])->get('/ativos/edit', 'App\Http\Controllers\Web\AtivosController@edit');
 

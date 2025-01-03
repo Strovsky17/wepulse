@@ -1,5 +1,5 @@
 // Show user of the BO
-window.PanelHistory = function( $scope, __config )
+window.PanelAlerts = function( $scope, __config )
 {
     let _this = this;
 
@@ -46,9 +46,9 @@ window.PanelHistory = function( $scope, __config )
             },*/
 
             columns: {
-                equipment: __config.lang.equipment,
+                type: __config.lang.type,
+                active: __config.lang.active,
                 category: __config.lang.category,
-                register: __config.lang.register,
                 date: __config.lang.date,
             },
             data: __config.data,
@@ -65,4 +65,4 @@ window.PanelHistory = function( $scope, __config )
     }
 
     _this._construtor();
-}
+}   
