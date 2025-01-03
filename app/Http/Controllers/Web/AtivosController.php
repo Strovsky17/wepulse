@@ -25,7 +25,7 @@ class AtivosController extends Controller
     }
     function history()
     {
-        return view( 'ativos.history' );
+        return view( 'ativos.history.history' );
     }
     function edit()
     {

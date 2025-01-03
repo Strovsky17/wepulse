@@ -5,6 +5,6 @@
 @section('content')
 
 @include('ativos/register/register-register')
-@include('ativos/history/history')
+@include('ativos/history/history-list')
 
 @endsection
