@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Login
 window.PanelLogin = function( $scope, __config )
 {
@@ -44,6 +46,8 @@ window.PanelProfile = function( $scope, __config )
     this._construtor = function()
     {
         new Panel( this );
+
+        _this.parameters.__edit = 0;
     }
 
     this.rules = {
@@ -61,7 +65,21 @@ window.PanelProfile = function( $scope, __config )
 
             if(f.validate())
             {
-                f.parameters.__edit = 0;            
+                let data = {
+                    name: _this.parameters.__name,
+                    nif: _this.parameters.__nif,
+                    address: _this.parameters.__address,
+                    zipcode: _this.parameters.__zipcode,
+                    locality: _this.parameters.__locality,
+                    contact: _this.parameters.__contact,
+                    email: _this.parameters.__email,
+                }
+
+                axios.post('profile', data).then( ()=> {
+                    _this.parameters.__edit = 0;
+                }).catch(() => {
+                    console.lof('FALTA - toast Error');
+                })   
             }
 
         }

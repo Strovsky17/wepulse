@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\User;
+use App\Models\Client;
 
 use App\Services\DatabaseService;
 
@@ -29,6 +30,26 @@ class AdminController extends Controller
         if( $user->role != 'superadmin' )
             return abort(401);
 
-        return view( 'admin/view' );
+        return view( 'admin/view', [ 'clients' => Client::all() ] );
     }
+
+    /**
+     * Migrate
+     */
+    function migrate()
+    {
+        $clients = Client::all();
+        foreach ($clients as $c)
+        {
+            echo '----------------<br/>';
+            echo 'Client - '.$c->name.'<br/>';
+            echo '----------------<br/>';
+
+            DatabaseService::changeAppConnection( ["database" => "wepulse_".$c->id] );
+            DatabaseService::migration(true);    
+        }
+
+        return true;
+    }
+
 }

@@ -27,8 +27,10 @@ class DatabaseService {
     /**
      * Create the migration of the DB
      */
-    public static function migration()
+    public static function migration( $debug = false  )
     {
+        //dd(DB::connection('app')->getDatabaseName());
+
         // Verified if migration table exist
         if (!Schema::connection('app')->hasTable('migrations')) 
         {
@@ -38,15 +40,43 @@ class DatabaseService {
                    $table->string('migration', 90);
             });
        }
+
+       $filesName = File::files(base_path().'\database\migrations\app\\');
+       foreach ($filesName as $f) 
+       {
+            $name = pathinfo($f, PATHINFO_FILENAME);
+            $m = DB::connection('app')->table('migrations')->where( 'migration', $name )->first();
+            
+            if( !$m )
+            {
+                try
+                {
+                    // Exec File
+                    $x = require base_path().'\database\migrations\app\\'.$name.'.php';
+                    $x->up();
+
+                    // Save On DB
+                    DB::connection('app')->table('migrations')->insert( ['migration' => $name] );
+
+                    if( $debug )
+                    {
+                        echo '----------------<br>';
+                        echo 'File - '.$name.'<br>';
+                        echo '----------------<br>';
+                    }
+                } 
+                catch (\Throwable $th) 
+                {
+                    if( $debug )
+                    {
+                        echo '----------------<br>';
+                        echo 'File - '.$name.' - Error<br>';
+                        echo '----------------<br>';
+                    }
+                }
+            }
+       }
     }
-
-    /*$x = require base_path().'\database\migrations\0001_01_01_000000_create_users_table.php';
-    $x->up();
-    
-    dd("AAAA");
-
-    $filesName = File::files(base_path().'\database\migrations\app\\');
-    dd($filesName);*/
 
     /**
      * Change APP database connection

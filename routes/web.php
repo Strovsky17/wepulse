@@ -31,9 +31,13 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/edi
  * Admin
  */
 Route::middleware(['auth:sanctum'])->get('/admin', 'App\Http\Controllers\Web\AdminController@admin');
+Route::middleware(['auth:sanctum'])->get('/admin/migrate', 'App\Http\Controllers\Web\AdminController@migrate');
 
 /**
  * Requests
  */
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
+
 Route::middleware(['auth:sanctum'])->resource('client', 'App\Http\Controllers\Api\ClientController');
+Route::middleware(['auth:sanctum'])->post('client/change', 'App\Http\Controllers\Api\ClientController@change');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('profile', 'App\Http\Controllers\Api\ClientController@profile');

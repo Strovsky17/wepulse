@@ -33,15 +33,4 @@ class UserController extends Controller
     {
         return view( 'dashboard' );
     }
-
-
-    function store_data(Request $request)
-    {
-    $data = new User;
-
-    $data->name = $request->input('name');
-    $data->email = $request->input('email');
-    $data->password = $request->input('password');
-
-    }
 }

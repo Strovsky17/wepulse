@@ -16,7 +16,7 @@
     <script>
         window.addEventListener('load', () => {
             window.pUsers = new PanelClients( document.querySelector('.panel-client-list'), {
-                data: []
+                data: {!! json_encode($clients) !!}
             });
         })
     </script>

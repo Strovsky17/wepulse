@@ -52,12 +52,20 @@ window.PanelClients = function( $scope, __config )
             columns: {
                 id: '#',
                 name: window.tableLang.name,
+                token: 'Token',
             },
             data: __config.data,
             actions:[
                 { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
-                    alert('Ver User') 
-                }}/*,
+                    
+                    axios.post('client/change', {'token':d.token }).then((response) => {
+                        window.location.href = '/';
+                    }).catch(() => {
+
+                    });
+                }}
+                
+                /*,
                 { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => { 
                     alert('Remove User') 
                 }},*/
