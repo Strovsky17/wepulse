@@ -1,5 +1,6 @@
 <div class='panel form row panel-profile-info'>
-
+@csrf
+<div class="form row">
     <div class='panel-header'>
         <h2>{!!__("profile.userInfo")!!}</h2>
 
@@ -48,6 +49,7 @@
         <span rule='edit'>suport@securenet.pt</span> 
         <input type="text" class="form-control" name='email' placeholder='suport@securenet.pt' required rule='save' to='span'/>
     </div>
+</div>
 
     <input type='hidden' name='edit' value='0' />
     <script>

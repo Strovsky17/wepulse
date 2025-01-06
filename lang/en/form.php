@@ -7,5 +7,6 @@ return [
     'add' => 'Adicionar',
     'download' => 'Download',
     'welcome' => 'Bem-vindo',
+    'cancel' => 'Cancelar',
     
 ];
