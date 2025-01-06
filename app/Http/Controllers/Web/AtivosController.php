@@ -13,7 +13,7 @@ class AtivosController extends Controller
      */
     function ativos()
     {
-        return view( 'ativos.ativos' );
+        return view( 'ativos.active' );
     }
     function register()
     {

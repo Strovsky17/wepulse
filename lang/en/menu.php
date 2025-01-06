@@ -24,4 +24,6 @@ return [
     'historty' => 'Histórico',  
     'customFields' => 'Campos personalizados',
     'createalerts' => 'Criar Alertas',
+    'client' => 'Cliente',
+    
 ];  

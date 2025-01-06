@@ -17,3 +17,11 @@ class ClientController extends Controller
     }
     
 }
+
+{
+    function info(){
+        return view('client.info');
+
+    }
+
+}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\ClientController;
 
 Route::get('login', ['as' => 'login', 'uses' => 'App\Http\Controllers\Web\UserController@login']);
 Route::get('/register', 'App\Http\Controllers\Web\UserController@register');
@@ -33,3 +34,5 @@ Route::middleware(['auth:sanctum'])->get('/admin', 'App\Http\Controllers\Web\Adm
  */
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 Route::resource('client', 'App\Http\Controllers\Api\ClientController');
+
+Route::get ('client', [ClientController::class, 'info']);

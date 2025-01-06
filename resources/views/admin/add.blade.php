@@ -5,6 +5,7 @@
     </div>
 
     <div class='form'>
+        
         <div class='form-group col-md-12'>
             <label>{!! __('profile.name') !!}</label>
             <input type="text" class="form-control" name='name' placeholder='{!!__("profile.namePlaceHolder")!!}' required />

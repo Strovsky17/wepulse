@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 
+
 class UserController extends Controller
 {
     /**
@@ -31,5 +32,16 @@ class UserController extends Controller
     function dashboard()
     {
         return view( 'dashboard' );
+    }
+
+
+    function store_data(Request $request)
+    {
+    $data = new User;
+
+    $data->name = $request->input('name');
+    $data->email = $request->input('email');
+    $data->password = $request->input('password');
+
     }
 }

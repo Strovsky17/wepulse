@@ -7,7 +7,7 @@
 
         <div class='search form-group'>
             <i class="fa-solid fa-magnifying-glass"> </i>
-            <input type="text" class="form-control" name='search' placeholder='{!! __("profile.search") !!}' required />
+            <input type="text" class='' name='search' placeholder='{!! __("profile.search") !!}' required />
         </div>
     </div>
 
