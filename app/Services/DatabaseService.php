@@ -13,9 +13,16 @@ use App\Models\Automation;
 use Config;
 use DB;
 use File;
-use Route;
 
 class DatabaseService {
+
+    /**
+     * Create a new database
+     */
+    public static function create( $db_database )
+    {
+        DB::statement("CREATE database $db_database");
+    }
 
     /**
      * Create the migration of the DB
@@ -55,11 +62,6 @@ class DatabaseService {
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
             'database' => $DB['database'],
-            /*'driver' => $DB->driver,
-            'host' => $DB->db_host,*/
-            /*'username' => $DB->db_username,
-            'password' => $pass,
-            'port' => $DB->port*/
         ]);
 
         DB::purge('app');

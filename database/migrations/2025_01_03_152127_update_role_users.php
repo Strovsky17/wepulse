@@ -24,11 +24,3 @@ return new class extends Migration
         //
     }
 };
-
-DatabaseService::changeAppConnection( ["database" => "wepulse_1"] );
-DatabaseService::migration();
-
-DatabaseService::changeAppConnection( ["database" => "wepulse_2"] );
-DatabaseService::migration();
-
-dd("AAAA");
