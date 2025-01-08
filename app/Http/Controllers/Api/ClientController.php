@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Client;
 
+use App\Models\Client;
+use App\Models\User;
+use App\Models\UserClient;
 
 use App\Services\DatabaseService;
 
@@ -12,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -125,8 +128,6 @@ class ClientController extends Controller
             {
                 $p->value = $value;
                 $p->save();
-
-                echo "a";
             }
             else
             {
@@ -134,11 +135,71 @@ class ClientController extends Controller
                     'code' => $code,
                     'value' => $value
                 ]);
-
-                echo "B";
             }
         }
 
         return ['success' => true];
+    }
+    
+    /**
+     * Add User
+     */
+    public function addUser(Request $request)
+    {
+        // Valited User
+        $ua = Auth::user();
+        if( $ua && ( $ua->role == 'superadmin' || $ua->roleClient == 'admin' ) ) {} else
+            return abort(401);
+
+        $client_id = Session::get('client_id');
+
+        // Validated fields
+        $validated = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+        ])->validate();
+        
+        $user = User::where('email', $request->email)->first();
+        if( $user )
+        {   
+            $user->name = $request->name;
+            //$user->phone = empty($request->phone) ? $user->phone : $request->phone;
+            $user->save();
+        }
+        else
+        {
+            // Validated fields
+            $validated = Validator::make($request->all(), [
+                'password' => 'required',
+            ])->validate();
+
+            // Create new user and new client relations
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                // 'phone' => empty($request->phone) ? '' : $request->phone,
+                'password' => Hash::make($request->password),
+                'role' => 'client',
+            ]);
+        }
+
+        $uc = UserClient::where('user_id', $user->id)->where('client_id', $client_id)->first();
+        if( !$uc )
+        {
+            UserClient::create([
+                'user_id' => $user->id,
+                'client_id' => $client_id,
+                'role' => $request->role,
+            ]);
+        }
+        else
+        {
+            $uc->role = $request->role;
+            $uc->save();
+        }
+
+        $user->roleClient;
+        return $user;
     }
 }

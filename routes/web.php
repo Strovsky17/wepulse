@@ -40,3 +40,4 @@ Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 Route::middleware(['auth:sanctum'])->resource('client', 'App\Http\Controllers\Api\ClientController');
 Route::middleware(['auth:sanctum'])->post('client/change', 'App\Http\Controllers\Api\ClientController@change');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('profile', 'App\Http\Controllers\Api\ClientController@profile');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('user', 'App\Http\Controllers\Api\ClientController@addUser');

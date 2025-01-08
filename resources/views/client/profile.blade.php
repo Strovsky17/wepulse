@@ -6,6 +6,6 @@
 
    @include('client/info')
    @include('client/users')  
-   @include('client/addprofile')     
+   @include('client/userAdd')     
    
 @endsection

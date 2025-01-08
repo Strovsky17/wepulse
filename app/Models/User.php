@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -46,4 +48,35 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected function getRoleClientAttribute()
+    {
+        $client_id = Session::get('client_id');
+        if( !$client_id )
+            return null;
+
+        $uc = UserClient::where('user_id', $this->id)->where('client_id', $client_id)->first();
+        if( !$uc )
+            return null;
+        
+        return $uc->role;
+    }
+
+    /*protected function roleClient(): Attribute
+    {
+        return Attribute::make(
+            get: function() {
+
+                $client_id = Session::get('client_id');
+                if( !$client_id )
+                    return null;
+
+                $uc = UserClient::where('user_id', $this->id)->where('client_id', $client_id)->first();
+                if( !$uc )
+                    return null;
+                
+                return $uc->role;
+            },
+        );
+    }*/
 }

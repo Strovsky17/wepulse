@@ -108,7 +108,11 @@ window.PanelUsers = function( $scope, __config )
         
     }
 
-    this.actions = { }
+    this.actions = {
+        add: () => {
+            window.pUserAdd.open( null,  _this.addUser);
+        }
+    }
 
     this.process = () => {
 
@@ -119,6 +123,25 @@ window.PanelUsers = function( $scope, __config )
         }
     }
 
+    // Add Client to database
+    this.addUser = (user) => {
+
+        let data = _this.table.config.data;
+        for (let i = 0; i < data.length; i++) 
+        {
+            const u = data[i];
+            if( u.id == user.id )
+            {
+                data[i] = user;
+                _this.table.search();
+                return true;
+            }
+        }
+
+        _this.table.config.data.push(user);
+        _this.table.search();
+    }
+
     // Initialize table
     this.initTable = () => {
 
@@ -126,26 +149,21 @@ window.PanelUsers = function( $scope, __config )
             rowsPerPage: 10,
             perPage: false,
             search: false,
-            /*lang: {
-                create: "{{__('table.create')}}",
-                next: "{{__('table.next')}}",
-                prev: "{{__('table.prev')}}",
-                countPage: "{{__('table.countPage')}}",
-                noResults: "{{__('table.noResults')}}",
-                search: "{{__('table.search')}}"
-            },*/
             columns: {
                 name: __config.lang.name,
                 phone: __config.lang.phone,
                 email: __config.lang.email,
-                role: __config.lang.role,
+                roleClient: __config.lang.role,
             },
             data: __config.data,
             actions:[
                 { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
-                    alert('Ver User') 
+
+                    window.pUserAdd.open(d, (user) => {
+                        _this.addUser(user);
+                    });
                 }},
-                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => { 
+                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
                     alert('Remove User') 
                 }},
             ]
@@ -156,12 +174,11 @@ window.PanelUsers = function( $scope, __config )
     _this._construtor();
 }
 
+// The to add User to a Client
 window.PanelUserAdd = function( $scope )
 {
     let _this = this;
-
     this.$scope = $scope;
-
 
     this._construtor = function()
     {
@@ -179,13 +196,19 @@ window.PanelUserAdd = function( $scope )
             {
                 _this.parameters.__load = 1;
                 
-                axios.post( '/user', { name: _this.parameters.__name } )
-                .then( () => {
-
+                axios.post( '/user', { 
+                    name: _this.parameters.__name,
+                    phone: _this.parameters.__phone, 
+                    email: _this.parameters.__email, 
+                    role: _this.parameters.__role,
+                    password: _this.parameters.__password,
+                } )
+                .then( ( r ) => {
                     if( _this.successCallBack != undefined )
-                        _this.successCallBack( { id:1, name: _this.parameters.__name } );
+                        _this.successCallBack( r.data );
 
                     _this.close();
+                    _this.parameters.__load = 0;
                 })
                 .catch( () => {
                     console.log('POP UP ERRRO');
@@ -199,7 +222,11 @@ window.PanelUserAdd = function( $scope )
         }
     }
 
-    this.openDisplay = () => {
+    this.openDisplay = ( data ) => {
+
+
+        console.log(data);
+
         _this.parameters.__name = '';
         _this.parameters.__load = 0;
     }

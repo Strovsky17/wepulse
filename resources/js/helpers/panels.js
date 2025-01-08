@@ -1,7 +1,7 @@
 window.Panel = function( panel )
 {
-    //new ZapifyDrop( panel.$scope );
-    //new ZapifyWYSIWYG( panel.$scope  );
+    new WepulseDrop( panel.$scope );
+    //new WepulseWYSIWYG( panel.$scope  );
 
     // Init Form mode
     panel.zForm = new PForm( panel.$scope, {
