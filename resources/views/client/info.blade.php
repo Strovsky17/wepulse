@@ -40,7 +40,7 @@
         <div class='form-group col-md-6'>
             <label>{!! __('profile.contact') !!}</label>
             <span rule='edit'>{{ !empty($profile['contact']) ? $profile['contact'] : '' }}</span> 
-            <input type="text" class="form-control" name='contact' placeholder='+999 999 999' required rule='save' to='span' value="{{ !empty($profile['contact']) ? $profile['contact'] : '' }}"/>
+            <input type="text" class="form-control" name='contact' placeholder='+999 999 999 999' required rule='save' to='span' value="{{ !empty($profile['contact']) ? $profile['contact'] : '' }}"/>
         </div>
         
         <div class='form-group col-md-6'>

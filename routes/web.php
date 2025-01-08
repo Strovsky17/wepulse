@@ -6,14 +6,13 @@ use App\Http\Middleware\AppSelectValidated;
 Route::get('login', ['as' => 'login', 'uses' => 'App\Http\Controllers\Web\UserController@login']);
 Route::get('/register', 'App\Http\Controllers\Web\UserController@register');
 
-/*
-Route::get('/ativos/ativos', 'App\Http\Controllers\Web\AtivosController@ativos');
+/*Route::get('/ativos/ativos', 'App\Http\Controllers\Web\AtivosController@ativos');
 Route::get('/ativos/register', 'App\Http\Controllers\Web\AtivosController@register');
 Route::get('/ativos/alerts', 'App\Http\Controllers\Web\AtivosController@alerts');
 Route::get('/ativos/inventory', 'App\Http\Controllers\Web\AtivosController@inventory');
 Route::get('/ativos/history', 'App\Http\Controllers\Web\AtivosController@history');
-Route::get('/ativos/edit', 'App\Http\Controllers\Web\AtivosController@edit');*/
-
+Route::get('/ativos/edit', 'App\Http\Controllers\Web\AtivosController@edit');
+*/
 
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/', 'App\Http\Controllers\Web\UserController@dashboard');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/dashboard', 'App\Http\Controllers\Web\UserController@dashboard');

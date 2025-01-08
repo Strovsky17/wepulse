@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
-use App\Models\Profile;
+
 
 use App\Services\DatabaseService;
 
@@ -106,7 +106,7 @@ class ClientController extends Controller
 
         return abort(404);
     }
-    
+
     /**
      * Add profile info to the client
      */

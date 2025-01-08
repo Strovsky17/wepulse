@@ -155,3 +155,54 @@ window.PanelUsers = function( $scope, __config )
 
     _this._construtor();
 }
+
+window.PanelUserAdd = function( $scope )
+{
+    let _this = this;
+
+    this.$scope = $scope;
+
+
+    this._construtor = function()
+    {
+        new Panel( this );
+    }
+
+    this.rules = {
+        load: (p) => { return p.__load == 1; }
+    }
+
+    this.actions = {
+        save: (f) => {
+          
+            if(f.validate())
+            {
+                _this.parameters.__load = 1;
+                
+                axios.post( '/user', { name: _this.parameters.__name } )
+                .then( () => {
+
+                    if( _this.successCallBack != undefined )
+                        _this.successCallBack( { id:1, name: _this.parameters.__name } );
+
+                    _this.close();
+                })
+                .catch( () => {
+                    console.log('POP UP ERRRO');
+                    _this.parameters.__load = 0;
+                });
+            }
+        },
+        // cancel
+        cancel: () => {
+            _this.close();
+        }
+    }
+
+    this.openDisplay = () => {
+        _this.parameters.__name = '';
+        _this.parameters.__load = 0;
+    }
+
+    _this._construtor();
+}
