@@ -143,6 +143,68 @@ body {
     }
 }
 
+.modal {
+
+    opacity: 1!important;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s linear 0s;
+
+    & {
+        background-color: rgba(0, 0, 0, 0);
+        
+    }
+
+    .modal-content {
+        padding: 20px;
+        top: -30vh;
+        opacity: 0;
+        transition: all 0.5s linear 0s;
+
+    }
+
+    &.open 
+    {
+        background-color: rgba(0, 0, 0, 0.4);
+
+        .modal-content {
+            top: 0vh;
+            opacity: 1;
+        }
+    }
+
+    .modal-header  {
+
+        border: none;
+
+        h2 {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 40px;
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .modal-body {
+        color: #636363;
+        text-align: center;
+    }
+
+    .modal-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+
+        button {
+            min-width: 120px;
+        }
+    } 
+}
+
 [WepulseDrop], .Wepulsedrop {
 
     position: relative;

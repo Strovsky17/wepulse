@@ -110,6 +110,6 @@ class FieldController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Field::find($id)->delete();
     }
 }

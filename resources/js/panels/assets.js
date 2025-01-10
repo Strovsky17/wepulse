@@ -51,6 +51,22 @@ window.PanelAssetsTableFields = function( $scope, __config )
         _this.table.config.data.push(field);
         _this.table.search();
     }
+    
+    // Add Client to database
+    this.removeList = (id) => {
+
+        let aux = [];
+        let data = _this.table.config.data;
+        for (let i = 0; i < data.length; i++) 
+        {
+            const f = data[i];
+            if( f.id != id )
+                aux.push(data[i]);
+        }
+
+        _this.table.config.data = aux;
+        _this.table.search();
+    }
 
     // Initialize table
     this.initTable = () => {
@@ -79,7 +95,16 @@ window.PanelAssetsTableFields = function( $scope, __config )
                     window.pAssetsField.open( d,  _this.processList );
                 }},
                 { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
-                    
+                    window.WepulseModal( 'confirm', ( flag ) => {
+                        if( flag == true )
+                        {
+                            axios.delete( 'assets/field/'+d.id ).then( (response) => {
+                                _this.removeList(d.id);
+                            }).catch(() => {
+
+                            });
+                        }
+                    });
                 }},
             ]
         });
@@ -87,7 +112,6 @@ window.PanelAssetsTableFields = function( $scope, __config )
 
     _this._construtor();
 }
-
 
 // Show user of the BO
 window.PanelAssetsField = function( $scope )
