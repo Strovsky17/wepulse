@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Webpulse',
-            'email' => 'webpulse@webpulse.com',
-            'password' => Hash::make('admin@1234')
+            'name' => 'Wepulse',
+            'email' => 'wepulse@wepulse.com',
+            'password' => Hash::make('admin@1234'),
+            'role' => 'superadmin',
         ]);
     }
 }

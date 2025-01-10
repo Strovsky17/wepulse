@@ -17,4 +17,9 @@ return [
     'userUsers' => 'Responsável',
     'search' => 'Pesquisa...',
     'searchPlaceHolder' => 'Pesquisa...',
+    'user' => 'Utilizador',
+    'phone'=> 'Telemóvel',
+    'role' => 'Cargo',
+    'roleAdmin' => 'Admin',
+    'roleWorker' => 'Colaborador',
 ];

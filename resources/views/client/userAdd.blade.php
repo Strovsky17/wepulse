@@ -1,23 +1,23 @@
 <div class='panel-side form panel-user-add'>
 
     <div class='panel-header'>
-        <h4>{!!__("menu.user")!!}</h4>
+        <h4>{!!__("profile.user")!!}</h4>
     </div>
 
     <div class='form'>
         
         <div class='form-group col-md-12'>
-            <label>{!! __('form.name') !!}</label>
+            <label>{!! __('profile.name') !!}</label>
             <input type="text" class="form-control" name='name' placeholder='{!!__("profile.namePlaceHolder")!!}' required />
         </div>
                 
         <div class='form-group col-md-12'>
-            <label>{!! __('form.phone') !!}</label>
+            <label>{!! __('profile.phone') !!}</label>
             <input type="text" class="form-control" name='phone' placeholder='351000000000' required />
         </div>
                         
         <div class='form-group col-md-12'>
-            <label>{!! __('form.email') !!}</label>
+            <label>{!! __('profile.email') !!}</label>
             <input type="text" class="form-control" name='email' placeholder='Email' required />
         </div>
         
@@ -27,15 +27,16 @@
         </div>
              
         <div class='form-group col-md-12'>
-            <label>{!! __('form.role') !!}</label>
+            <label>{!! __('profile.role') !!}</label>
             <div WepulseDrop name='role'>
+
                 <div>
                     <span></span>
                     <i class="fa-solid fa-caret-down"></i>
                 </div>
                 <div>
-                    <div value='admin'>{!! __('form.roleAdmin') !!}</div>
-                    <div value='worker'>{!! __('form.roleWorker') !!}</div>
+                    <div value='{!!__("profile.roleAdmin")!!}'>{!! __('profile.roleAdmin') !!}</div>
+                    <div value='{!!__("profile.roleWorker")!!}'>{!! __('profile.roleWorker') !!}</div>
                 </div>
             </div>
         </div>

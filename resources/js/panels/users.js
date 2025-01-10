@@ -228,6 +228,10 @@ window.PanelUserAdd = function( $scope )
         console.log(data);
 
         _this.parameters.__name = '';
+        _this.parameters.__phone = '';
+        _this.parameters.__email = '';
+        _this.parameters.__password = '';
+        _this.parameters.__role ='';
         _this.parameters.__load = 0;
     }
 
