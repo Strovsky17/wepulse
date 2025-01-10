@@ -691,3 +691,98 @@ window.WYSIWYG = function( $scope )
 
     this.constructor();
 }
+
+/**
+ * Modal
+ */
+window.WepulseModal = function( type, callback )
+{
+
+    let _this = this;
+
+    /**
+     * Contruir pop up
+     */
+    this.constructor = () => {
+
+        this.$el = document.createElement('div');
+        this.$el.className = 'modal';
+        this.$el.innerHTML = this.getModel();
+
+        this.actions();
+
+        document.body.appendChild( this.$el );
+
+        this.open();
+    }
+    
+    /**
+     * Obter a informação do modal
+     */
+    this.getModel = () => {
+    
+        if( type == 'confirm' )
+        {
+            return  `
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">                    
+                        <h2 class="modal-title">${window.tableLang.areYouSure}</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>${window.tableLang.deleteBody}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" btn-cancel>${window.tableLang.cancel}</button>
+                        <button type="button" class="btn btn-danger" btn-confirm>${window.tableLang.delete}</button>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+    }
+    
+    /**
+     * Actions
+     */
+    this.actions = () => {
+    
+        let cancel = _this.$el.querySelector('[btn-cancel]');
+        if( cancel != null )
+            cancel.onclick = _this.close;
+        
+        let confirm = _this.$el.querySelector('[btn-confirm]');
+        if( confirm != null )
+            confirm.onclick = _this.confirm;
+    }
+
+    // Open
+    this.open = () => {
+
+        setTimeout(() => {
+            _this.$el.classList.add('open');
+        }, 200);
+    }
+
+    // Close
+    this.close = () => {        
+        _this.$el.classList.remove('open');
+        setTimeout(() => {
+            _this.$el.remove();    
+        }, 500);
+
+        callback(false);
+    }
+    
+    // Close
+    this.confirm = () => {        
+        _this.$el.classList.remove('open');
+        setTimeout(() => {
+            _this.$el.remove();    
+        }, 500);
+
+        callback(true);
+    }
+    
+    this.constructor();
+}

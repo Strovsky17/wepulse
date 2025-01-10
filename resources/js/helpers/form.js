@@ -127,53 +127,79 @@ window.PForm = function( $scope, config )
             else if($el.type == 'hidden' )
                 $el.onchange = _this.rules;
 
-            Object.defineProperty( this.parameters, '__'+$el.getAttribute('name'), {
-                get() {
-                    let format = $el.getAttribute('format')
-                    if( format == 'json' )
-                    {
-                        if($el.value == '')
-                            return null;
 
-                        return JSON.parse($el.value);
+            // Array
+            if( $el.getAttribute('name').includes('[]') )
+            {
+                let name = $el.getAttribute('name').replace('[]', '')
+
+                Object.defineProperty( this.parameters, '__'+name, {
+                    get() {
+                        
+                        let data = [];
+                        let $c = $scope.querySelectorAll('[name="'+name+'[]"]');
+                        for (let i = 0; i < $c.length; i++)
+                            data.push($c[i].value);
+    
+                        return data;
+                    },
+                    set( v ) {
+                        _this.rules();
                     }
-
-                    return $el.value;
-                },
-                set( v ) {
-
-                    if( v == 'makeInvalid' )
-                    {
-                        $el.classList.add('is-invalid');
-                        return true;
+                });
+            }
+            else
+            {
+                Object.defineProperty( this.parameters, '__'+$el.getAttribute('name'), {
+                    get() {
+                        let format = $el.getAttribute('format')
+                        if( format == 'json' )
+                        {
+                            if($el.value == '')
+                                return null;
+    
+                            return JSON.parse($el.value);
+                        }
+    
+                        return $el.value;
+                    },
+                    set( v ) {
+    
+                        if( v == 'makeInvalid' )
+                        {
+                            $el.classList.add('is-invalid');
+                            return true;
+                        }
+                        
+                        if( v == 'makeValid' )
+                        {
+                            $el.classList.remove('is-invalid');
+                            return true;
+                        }
+                        
+                        let to = $el.getAttribute('to');
+                        if( to != null  && $el.parentNode.querySelector(to))
+                            $el.parentNode.querySelector(to).innerHTML = v;
+    
+    
+                        if($el.value == v)
+                            return true;
+    
+                        let format = $el.getAttribute('format')
+                        if( format == 'json' )
+                            $el.value = JSON.stringify(v);
+                        else
+                            $el.value = v;
+    
+                        if($el.change != undefined )
+                            $el.change( $el );
+    
+                        _this.rules();
                     }
-                    
-                    if( v == 'makeValid' )
-                    {
-                        $el.classList.remove('is-invalid');
-                        return true;
-                    }
-                    
-                    let to = $el.getAttribute('to');
-                    if( to != null  && $el.parentNode.querySelector(to))
-                        $el.parentNode.querySelector(to).innerHTML = v;
+                });
+            }
 
-
-                    if($el.value == v)
-                        return true;
-
-                    let format = $el.getAttribute('format')
-                    if( format == 'json' )
-                        $el.value = JSON.stringify(v);
-                    else
-                        $el.value = v;
-
-                    if($el.change != undefined )
-                        $el.change( $el );
-
-                    _this.rules();
-                }
-            });
+            
         }
     }
     
@@ -511,7 +537,20 @@ window.PForm = function( $scope, config )
             else
             {
                 let v = _this.parameters['__'+name];
-                if( v != undefined &&  
+                if( v == undefined &&  
+                    ( 
+                        ( Array.isArray($el.value) && $el.value.length == 0) || 
+                        ( !Array.isArray($el.value) && $el.value.trim() == '' && $el.value == false )
+                    )
+                )
+                {
+                    if(error == undefined || error == true)
+                        $el.classList.add('is-invalid');
+                    
+                    if( $el.getAttribute('disabled') == undefined )
+                        flag = false;
+                }
+                else if( v != undefined &&  
                     ( 
                         ( Array.isArray(v) && v.length == 0) || 
                         ( !Array.isArray(v) && v.trim() == '' && _this.parameters['__'+name] == false )

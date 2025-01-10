@@ -55,3 +55,4 @@
             window.pUserAdd = new PanelUserAdd( document.querySelector('.panel-user-add') );
         })
     </script>
+</div>
