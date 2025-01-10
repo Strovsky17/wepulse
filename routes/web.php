@@ -17,11 +17,15 @@ Route::get('/ativos/edit', 'App\Http\Controllers\Web\AtivosController@edit');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/', 'App\Http\Controllers\Web\UserController@dashboard');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/dashboard', 'App\Http\Controllers\Web\UserController@dashboard');
 
+// Profile
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/profile', 'App\Http\Controllers\Web\ClientController@profile');
 
-/*Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/ativos', 'App\Http\Controllers\Web\AtivosController@ativos');
-Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/register', 'App\Http\Controllers\Web\AtivosController@register');
-Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/alerts', 'App\Http\Controllers\Web\AtivosController@alerts');
+// Assets
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/fields', 'App\Http\Controllers\Web\AssetsController@fields');
+
+/*Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/ativos', 'App\Http\Controllers\Web\AssetsController@ativos');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/register', 'App\Http\Controllers\Web\AssetsController@register');
+/*Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/alerts', 'App\Http\Controllers\Web\AtivosController@alerts');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/inventory', 'App\Http\Controllers\Web\AtivosController@inventory');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/history', 'App\Http\Controllers\Web\AtivosController@history');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/edit', 'App\Http\Controllers\Web\AtivosController@edit');*/
@@ -41,3 +45,4 @@ Route::middleware(['auth:sanctum'])->resource('client', 'App\Http\Controllers\Ap
 Route::middleware(['auth:sanctum'])->post('client/change', 'App\Http\Controllers\Api\ClientController@change');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('profile', 'App\Http\Controllers\Api\ClientController@profile');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('user', 'App\Http\Controllers\Api\ClientController@addUser');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/field', 'App\Http\Controllers\Api\FieldController');

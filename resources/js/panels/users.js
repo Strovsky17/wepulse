@@ -150,10 +150,10 @@ window.PanelUsers = function( $scope, __config )
             perPage: false,
             search: false,
             columns: {
-                name: __config.lang.name,
-                phone: __config.lang.phone,
-                email: __config.lang.email,
-                roleClient: __config.lang.role,
+                name: window.tableLang.name,
+                phone: window.tableLang.phone,
+                email: window.tableLang.email,
+                roleClient: window.tableLang.role,
             },
             data: __config.data,
             actions:[

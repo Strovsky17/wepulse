@@ -21,11 +21,11 @@
             </div>
 
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "" ? "active" : "" }}' >
-                    <i class="fa-solid fa-server"></i> {{ __('menu.ativos') }}
+                <a href='javascript:void(0)' action='open' class='{{ $page == "assets" ? "active" : "" }}' >
+                    <i class="fa-solid fa-server"></i> {{ __('menu.assets') }}
                 </a>
                 <div>
-                    <a href='/ativos/ativos' class='{{ $subpage == "ativos" ? "active" : "" }}' >
+                    <!--<a href='/ativos/ativos' class='{{ $subpage == "ativos" ? "active" : "" }}' >
                         {{ __('menu.ativos') }}
                     </a>
                     <a href='/ativos/register' class='{{ $subpage == "register" ? "active" : "" }}' >
@@ -42,6 +42,9 @@
                     </a>
                     <a href='/ativos/edit' class='{{ $subpage == "edit" ? "active" : "" }}' >
                         {{ __('menu.edit') }}
+                    </a>-->
+                    <a href='/assets/fields' class='{{ $subpage == "fields" ? "active" : "" }}' >
+                        {{ __('menu.personalFields') }}
                     </a>
                 </div>
             </div>

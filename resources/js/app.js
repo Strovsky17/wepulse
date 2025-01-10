@@ -7,7 +7,7 @@ import './helpers/helper';
 import './panels/menu';
 import './panels/users';
 import './panels/clients';
-import './panels/active';
+import './panels/assets';
 import './panels/history';
 import './panels/alerts';
 import './panels/edit';

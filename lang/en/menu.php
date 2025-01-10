@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'ativos' => 'Ativos',
+    'assets' => 'Ativos',
     'profile' => 'Perfil',
     'register' => 'Registo',
     'alerts' => 'Alertas',
@@ -25,5 +25,6 @@ return [
     'customFields' => 'Campos personalizados',
     'createalerts' => 'Criar Alertas',
     'client' => 'Cliente',
-    
+    'personalFields' => 'Campos Personalizados',
+    'personalField' => 'Campo Personalizado',
 ];  

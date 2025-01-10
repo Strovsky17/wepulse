@@ -1,9 +1,9 @@
-<div class='panel form row panel-profile-users'>
+<div class='panel form row panel-assets-table-fields'>
 
     <div class='panel-header'>
         <h2>{!!__("profile.userUsers")!!}</h2>
 
-        @if(  auth()->user()->role == 'superadmin' || auth()->user()->roleClient == 'admin' )
+        @if( auth()->user()->role == 'superadmin' || auth()->user()->roleClient == 'admin' )
         <button class='btn btn-primary' action='add'><i class="fa-thin fa-plus"></i> {{ __("form.add") }}</button>
         @endif
 
@@ -17,11 +17,8 @@
 
     <script>
         window.addEventListener('load', () => {
-            window.pUsers = new PanelUsers( document.querySelector('.panel-profile-users'), {
-                lang: {
-                    ...{!! json_encode( __('table') )  !!},
-                },
-                data: {!! json_encode( $users )  !!}
+            new PanelAssetsTableFields( document.querySelector('.panel-assets-table-fields'), {
+                data: {!! json_encode($fields) !!}
             });
         })
     </script>
