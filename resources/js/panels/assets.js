@@ -52,7 +52,7 @@ window.PanelAssetsTableFields = function( $scope, __config )
         _this.table.search();
     }
     
-    // Add Client to database
+    // Remove Client to database
     this.removeList = (id) => {
 
         let aux = [];
@@ -486,16 +486,16 @@ window.PanelAssets = function( $scope, __config )
                     window.location.href = 'assets/asset/'+d.id;
                 }},
                 { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
-                    /*window.WepulseModal( 'confirm', ( flag ) => {
+                    window.WepulseModal( 'confirm', ( flag ) => {
                         if( flag == true )
                         {
-                            axios.delete( 'assets/field/'+d.id ).then( (response) => {
+                            axios.delete( 'assets/assets/'+d.id ).then( (response) => {
                                 _this.removeList(d.id);
                             }).catch(() => {
 
                             });
                         }
-                    });*/
+                    });
                 }},
             ]
         });

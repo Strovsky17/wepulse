@@ -120,6 +120,7 @@ class AssetController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Asset::find($id)->delete();
     }
 }
+
