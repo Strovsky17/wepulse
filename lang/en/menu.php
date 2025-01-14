@@ -3,7 +3,7 @@
 return [
     'assets' => 'Ativos',
     'profile' => 'Perfil',
-    'register' => 'Registo',
+    'register' => 'Registar',
     'alerts' => 'Alertas',
     'inventory' => 'Inventário',
     'history' => 'Histórico',
