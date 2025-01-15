@@ -3,6 +3,6 @@
 @extends('misc.topbar', ["title" => __('menu.category')])
 
 @section('content')
-    @include('assets/category/list')
-    @include('assets/category/category')
+    @include('assets/categorys/list')
+    @include('assets/categorys/category')
 @endsection

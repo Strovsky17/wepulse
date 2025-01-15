@@ -46,9 +46,22 @@ class AssetsController extends Controller
         return view( 'assets.assets.view', [ 'asset' => $asset ] );
     }
 
-
+    /**
+     * Create a new Category
+     */
+    function category()
+    {
+        return view( 'assets.categorys.view' );
+    }
 
     
+
+    /**function category()
+    {
+        $categorys = category::all();
+
+        return view( 'assets.category.view', ['category' => $categorys] );
+    }*/
 
 
 
@@ -73,9 +86,9 @@ class AssetsController extends Controller
     {
         return view( 'ativos.inventory' );
     }
-    function category()
+
+    function assets()
     {
-        return view( 'assets.category' );
-    }
-    
+        return view( 'assets.assets.list' );
+    }   
 }

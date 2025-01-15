@@ -18,7 +18,7 @@
     <script>
         window.addEventListener('load', () => {
             new PanelAssetsTableCategory( document.querySelector('.panel-assets-table-category'), {
-                data: {!! json_encode($category) !!}
+                data: {!! json_encode(__('table')) !!}
             });
         })
     </script>

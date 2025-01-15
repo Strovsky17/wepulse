@@ -138,6 +138,22 @@ window.PanelUsers = function( $scope, __config )
             }
         }
 
+    // Remove Client to database
+    this.removeList = (id) => {
+
+        let aux = [];
+        let data = _this.table.config.data;
+        for (let i = 0; i < data.length; i++) 
+        {
+            const f = data[i];
+            if( f.id != id )
+                aux.push(data[i]);
+        }
+
+        _this.table.config.data = aux;
+        _this.table.search();
+    }
+
         _this.table.config.data.push(user);
         _this.table.search();
     }
@@ -247,3 +263,4 @@ window.PanelUserAdd = function( $scope )
 
     _this._construtor();
 }
+
