@@ -6,15 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    protected  $connections = 'app';
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::connection('app')->create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);
+            $table->string('name', 99);
             $table->timestamps();
+            $table->softDeletes('deleted_at');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category');
+        Schema::connection('app')->dropIfExists('categories');
     }
 };

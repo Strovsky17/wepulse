@@ -504,106 +504,6 @@ window.PanelAssets = function( $scope, __config )
     _this._construtor();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Show user of the BO
-window.PanelActive = function( $scope, __config )
-{
-    let _this = this;
-
-    this.$scope = $scope;
-
-    // Init the constructor
-    this._construtor = function()
-    {
-        new Panel( this );
-        this.initTable();
-
-        _this.parameters.__search = '';
-    }
-
-    this.rules = {
-        
-    }
-
-    this.actions = { }
-
-    this.process = () => {
-
-        if( this.table != null )
-        {
-            this.table.$search.value = this.parameters.__search;
-            this.table.search();
-        }
-    }
-
-    // Initialize table
-    this.initTable = () => {
-
-        this.table = new SuperTable( document.querySelector('.table'),
-        {
-            rowsPerPage: 10,
-            perPage: false,
-            search: false,
-            /*lang: {
-                create: "{{__('table.create')}}",
-                next: "{{__('table.next')}}",
-                prev: "{{__('table.prev')}}",
-                countPage: "{{__('table.countPage')}}",
-                noResults: "{{__('table.noResults')}}",
-                search: "{{__('table.search')}}"
-            },*/
-
-            columns: {
-                equipment: __config.lang.equipment,
-                category: __config.lang.category,
-                risk: __config.lang.risk,
-                responsable: __config.lang.responsable,
-                alerts: __config.lang.alerts,
-            },
-            data: __config.data,
-            actions:[
-                { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
-                    alert('Ver User') 
-                }},
-                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => { 
-                    alert('Remove User') 
-                }},
-            ]
-        });
-
-    }
-
-    _this._construtor();
-}
-
-
 // Show user of the BO
 window.PanelAssetsTableCategory = function( $scope, __config )
 {
@@ -700,7 +600,7 @@ window.PanelAssetsTableCategory = function( $scope, __config )
                     window.WepulseModal( 'confirm', ( flag ) => {
                         if( flag == true )
                         {
-                            axios.delete( 'assets/categorys/'+d.id ).then( (response) => {
+                            axios.delete( 'assets/category/'+d.id ).then( (response) => {
                                 _this.removeList(d.id);
                             }).catch(() => {
 
@@ -730,22 +630,11 @@ window.PanelAssetsCategory = function( $scope )
 
     // Rules
     this.rules = {
-        needValues: (p) => { return p.__type == 'checkbox' || p.__type == 'radiobutton' || p.__type == 'dropdown'  },
         load: (p) => { return p.__load == '1'  }
     }
 
     // Actions
     this.actions = {
-        // Add Field Value
-        add: () => {
-            _this.addCategoryValue();
-        },
-        // Remove Field Value
-        remove: (f, $el) => {
-
-            $el.parentNode.remove();
-            _this.ruleDisplay();
-        },
         // Close panel
         cancel: () => {
             _this.close();
@@ -765,12 +654,10 @@ window.PanelAssetsCategory = function( $scope )
                 }
 
                 _this.parameters.__load = 1;
-
-
                 // Create
                 if( _this.id == '' )
                 {
-                    axios.post( 'assets/categorys', data ).then( (response) => {
+                    axios.post( 'assets/category', data ).then( (response) => {
 
                         if( _this.successCallBack != undefined )
                             _this.successCallBack( response.data );
@@ -784,7 +671,7 @@ window.PanelAssetsCategory = function( $scope )
                 // Edit
                 else
                 {
-                    axios.put( 'assets/categorys/'+_this.id, data ).then( (response) => {
+                    axios.put( 'assets/category/'+_this.id, data ).then( (response) => {
 
                         if( _this.successCallBack != undefined )
                             _this.successCallBack( response.data );
@@ -799,65 +686,24 @@ window.PanelAssetsCategory = function( $scope )
         },
     }
 
-    // Process form
-    this.process = (f) => {
-
-        if(this.rules.needValues( f.parameters ))
-        {
-            if( _this.$scope.querySelector( '.categorys-values' ).children.length == 0 )
-                _this.addCategoryValue();
-        }
-    }
-
-    // Add New field value
-    this.addCategoryValue = (v) => {
-
-        if(v == undefined)
-            v = '';
-
-        let f = _this.$scope.querySelector( '.categorys-values' );
-        let c = components.createDiv('form-input-action mb-2');
-
-        c.innerHTML = `
-        <input type="text" class="form-control" name='values[]' required value="${v}" />
-        <i class='fa-thin fa-trash-can' actionRun='remove'></i>
-        `;
-
-        f.appendChild(c);
-    }
-
     // Open field
     this.openDisplay = (d) => {
-
-
-        // allways remove values
-        _this.$scope.querySelector( '.categorys-values' ).innerHTML = '';
 
         // Is new fiels
         if( d == null )
         {
             _this.parameters.__name = '';
-
-
             _this.id = '';
         }
         // Edit field mode
         else
         {
             _this.parameters.__name = d.name;
-
-            for (let i = 0; i < d.data.length; i++)
-            {
-                if( d.data[i] != null && d.data[i] != '' )
-                    _this.addCategoryValue(d.data[i]);
-            }
-
             _this.id = d.id;
         }
 
         _this.ruleDisplay();
     }
-
 
     _this._construtor();
 }

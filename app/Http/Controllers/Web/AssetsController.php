@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Models\Field;
+use App\Models\Category;
 use App\Models\Asset;
 
 class AssetsController extends Controller
@@ -49,19 +50,17 @@ class AssetsController extends Controller
     /**
      * Create a new Category
      */
-    function category()
+    function categories()
     {
-        return view( 'assets.categorys.view' );
+        $categories = Category::all();
+        return view( 'assets.categories.view', ['categories' => $categories] );
     }
 
     
 
-    /**function category()
-    {
-        $categorys = category::all();
 
-        return view( 'assets.category.view', ['category' => $categorys] );
-    }*/
+
+
 
 
 

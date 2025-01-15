@@ -13,6 +13,7 @@
                 <label>{!! __('form.name') !!}</label>
                 <input type="text" class="form-control" name='name' placeholder='{!!__("form.namePlaceholder")!!}' required />
             </div>
+        </div>
     </div>
 
     <div class='footer'>

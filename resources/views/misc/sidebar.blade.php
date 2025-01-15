@@ -49,7 +49,7 @@
                     <a href='/assets/asset' class='{{ $subpage == "register" ? "active" : "" }}' >
                         {{ __('menu.register') }}
                     </a>
-                    <a href='/assets/category' class='{{ $subpage == "category" ? "active" : "" }}' >
+                    <a href='/assets/categories' class='{{ $subpage == "categories" ? "active" : "" }}' >
                         {{ __('menu.category') }}
                     </a>
                     <a href='/assets/fields' class='{{ $subpage == "fields" ? "active" : "" }}' >
