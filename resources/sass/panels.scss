@@ -1,10 +1,15 @@
 .panel {
 
+    > .form {
+        padding: 0 10px
+    }
+
     .panel-header {
 
         display: table;
         width: 100%;
-        
+        padding: 0 10px;
+    
 
         h2 {
             float:left;

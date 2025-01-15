@@ -64,7 +64,7 @@ window.PForm = function( $scope, config )
                         if( $c != null  && $c.getAttribute('disabled') == undefined )
                             return $c.value;
 
-                        return false;
+                        return '';
                     },
                     set( v ) {
 
@@ -76,6 +76,10 @@ window.PForm = function( $scope, config )
                             else
                                 $c[i].checked = false;
                         }
+
+                        let to = $el.getAttribute('to');
+                        if( to != null  && $el.parentNode.parentNode.querySelector(to))
+                            $el.parentNode.parentNode.querySelector(to).innerHTML = v;
                     }
                 });
             }
@@ -255,6 +259,10 @@ window.PForm = function( $scope, config )
                     $el.classList.remove('is-invalid');
                     return true;
                 }
+                
+                let to = $el.getAttribute('to');
+                if( to != null  && $el.parentNode.querySelector(to))
+                    $el.parentNode.querySelector(to).innerHTML = v;
 
                 $el.value = v;
 
@@ -332,6 +340,15 @@ window.PForm = function( $scope, config )
                     {
                         $el.classList.remove('is-invalid');
                         return true;
+                    }
+
+                    let to = $el.getAttribute('to');
+                    if( to != null  && $el.parentNode.querySelector(to))
+                    {
+                        if( $el.querySelector('[value="'+v+'"]') != undefined )
+                            $el.parentNode.querySelector(to).innerHTML = $el.querySelector('[value="'+v+'"]').innerHTML;
+                        else
+                            $el.parentNode.querySelector(to).innerHTML = v;
                     }
 
                     $el.value = v;
