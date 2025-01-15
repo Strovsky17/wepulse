@@ -25,6 +25,9 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets', '
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/asset', 'App\Http\Controllers\Web\AssetsController@create');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/asset/{id}', 'App\Http\Controllers\Web\AssetsController@edit');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/fields', 'App\Http\Controllers\Web\AssetsController@fields');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/category', 'App\Http\Controllers\Web\AssetsController@category');
+
+
 
 /*Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/ativos', 'App\Http\Controllers\Web\AssetsController@ativos');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/register', 'App\Http\Controllers\Web\AssetsController@register');

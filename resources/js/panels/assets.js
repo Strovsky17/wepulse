@@ -52,7 +52,7 @@ window.PanelAssetsTableFields = function( $scope, __config )
         _this.table.search();
     }
     
-    // Remove Client to database
+    // Remove Client from database
     this.removeList = (id) => {
 
         let aux = [];
@@ -598,6 +598,120 @@ window.PanelActive = function( $scope, __config )
             ]
         });
 
+    }
+
+    _this._construtor();
+}
+
+
+// Show user of the BO
+window.PanelAssetsTableCategory = function( $scope, __config )
+{
+    let _this = this;
+
+    this.$scope = $scope;
+
+    // Init the constructor
+    this._construtor = function()
+    {
+        new Panel( this );
+        this.initTable();
+
+        _this.parameters.__search = '';
+    }
+
+    this.rules = {}
+
+    this.actions = {
+        add: () => {
+            window.pAssetsCategory.open( null,  _this.processList );
+        },
+    }
+
+    this.process = () => {
+
+        if( this.table != null )
+        {
+            this.table.$search.value = this.parameters.__search;
+            this.table.search();
+        }
+    }
+
+    // Add Category to database
+    this.processList = (category) => {
+
+        let data = _this.table.config.data;
+        for (let i = 0; i < data.length; i++) 
+        {
+            const f = data[i];
+            if( f.id == category.id )
+            {
+                data[i] = category;
+                _this.table.search();
+                return true;
+            }
+        }
+
+        _this.table.config.data.push(category);
+        _this.table.search();
+    }
+    
+    // Remove Category from database
+    this.removeList = (id) => {
+
+        let aux = [];
+        let data = _this.table.config.data;
+        for (let i = 0; i < data.length; i++) 
+        {
+            const f = data[i];
+            if( f.id != id )
+                aux.push(data[i]);
+        }
+
+        _this.table.config.data = aux;
+        _this.table.search();
+    }
+
+    // Initialize table
+    this.initTable = () => {
+
+        this.table = new SuperTable( document.querySelector('.table'),{
+            rowsPerPage: 10,
+            perPage: false,
+            search: false,
+            columns: {
+                name: window.tableLang.name,
+                type: `<div class="text-center">${window.tableLang.type}</div>`,
+                required: '<div class="text-center">Required</div>',
+            },
+            data: __config.data,
+            process_value_required: (v) => {
+                if(v == true)
+                    return '<div class="text-center"><i class="fa-regular fa-square-check"></i></div>';
+                else
+                    return '<div class="text-center"><i class="fa-regular fa-square-xmark"></i></div>';
+            },
+            process_value_type: (v) => {
+                return `<div class="text-center">${v}</div>`;
+            },
+            actions:[
+                { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
+                    window.pAssetsCategory.open( d,  _this.processList );
+                }},
+                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
+                    window.WepulseModal( 'confirm', ( flag ) => {
+                        if( flag == true )
+                        {
+                            axios.delete( 'assets/category/'+d.id ).then( (response) => {
+                                _this.removeList(d.id);
+                            }).catch(() => {
+
+                            });
+                        }
+                    });
+                }},
+            ]
+        });
     }
 
     _this._construtor();

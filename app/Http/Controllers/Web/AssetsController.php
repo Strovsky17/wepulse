@@ -73,6 +73,9 @@ class AssetsController extends Controller
     {
         return view( 'ativos.inventory' );
     }
-    
+    function category()
+    {
+        return view( 'assets.category' );
+    }
     
 }

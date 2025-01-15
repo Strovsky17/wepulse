@@ -27,4 +27,5 @@ return [
     'client' => 'Cliente',
     'personalFields' => 'Campos Personalizados',
     'personalField' => 'Campo Personalizado',
+    'category' => 'Categoria',
 ];  
