@@ -72,7 +72,8 @@ class AssetsController extends Controller
      */
     function histories()
     {
-        $histories = History::all();
+        //$histories = History::all();
+        $histories = [];
         return view( 'assets.histories.view', ['histories' => $histories] );
     }
 
@@ -81,7 +82,8 @@ class AssetsController extends Controller
      */
     function alerts()
     {
-        $alerts = Alert::all();
+        //$alerts = Alert::all();
+        $alerts = [];
         return view( 'assets.alerts.view', ['alerts' => $alerts] );
     }
 }
