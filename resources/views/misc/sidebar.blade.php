@@ -52,6 +52,12 @@
                     <a href='/assets/categories' class='{{ $subpage == "categories" ? "active" : "" }}' >
                         {{ __('menu.category') }}
                     </a>
+                    <a href='/assets/histories' class='{{ $subpage == "histories" ? "active" : "" }}' >
+                        {{ __('menu.history') }}
+                    </a>
+                    <a href='/assets/alerts' class='{{ $subpage == "alerts" ? "active" : "" }}' >
+                        {{ __('menu.alerts') }}
+                    </a>
                     <a href='/assets/fields' class='{{ $subpage == "fields" ? "active" : "" }}' >
                         {{ __('menu.personalFields') }}
                     </a>

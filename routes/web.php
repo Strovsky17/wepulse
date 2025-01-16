@@ -26,6 +26,8 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/ass
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/asset/{id}', 'App\Http\Controllers\Web\AssetsController@edit');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/fields', 'App\Http\Controllers\Web\AssetsController@fields');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/categories', 'App\Http\Controllers\Web\AssetsController@categories');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/histories', 'App\Http\Controllers\Web\AssetsController@histories');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/alerts', 'App\Http\Controllers\Web\AssetsController@alerts');
 
 
 
@@ -54,3 +56,5 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('user', 'Ap
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/field', 'App\Http\Controllers\Api\FieldController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/category', 'App\Http\Controllers\Api\CategoryController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/assets', 'App\Http\Controllers\Api\AssetController');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/history', 'App\Http\Controllers\Api\HistoryController');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/alert', 'App\Http\Controllers\Api\AlertController');

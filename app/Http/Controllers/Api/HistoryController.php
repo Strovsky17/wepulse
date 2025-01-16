@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Category;
+use App\Models\History;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class HistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,17 +38,17 @@ class CategoryController extends Controller
         if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
             return abort(401);
         
-        // Validated Categories
+        // Validated Historires
         $validated = Validator::make($request->all(), [
             'name' => 'required'
         ])->validate();
 
         // Create client
-        $Category = Category::create([
+        $History = History::create([
             'name' => $request->name
         ]);
 
-        return $Category;
+        return $History;
     }
 
     /**
@@ -77,14 +77,14 @@ class CategoryController extends Controller
         if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
             return abort(401);
 
-        $Category = Category::find($id);
+        $History = History::find($id);
 
         if( isset($request->name) )
-            $Category->name = $request->name;
+            $History->name = $request->name;
 
-        $Category->save();
+        $History->save();
 
-        return $Category;
+        return $History;
     }
 
     /**
@@ -92,6 +92,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        Category::find($id)->delete();
+        History::find($id)->delete();
     }
 }

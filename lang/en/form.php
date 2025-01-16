@@ -26,4 +26,9 @@ return [
     'toggle' => 'Toggle',
     'dropdown' => 'Select',
     'values' => 'Valores',
+
+    'alertDate' => 'Data do Alerta',
+    'category' => 'Categoria',
+    'asset' => 'Ativo',
+    'alertType' => 'Tipo de Alerta',
 ];
