@@ -375,8 +375,13 @@ window.PanelAsset = function( $scope, asset )
             _this.parameters.__criticality = asset.criticality;
             _this.parameters.__category_id = asset.category_id;
 
-            for (const key in asset.data) 
-                _this.parameters['__'+key] = asset.data[key] ?? '';
+            for (const key in asset.data)
+            {
+                if(key == 'image')
+                    _this.parameters['__'+key] = asset.data[key] ?? '';
+                else
+                    _this.parameters['__'+key] = asset.data[key] ?? '-';
+            }
 
             _this.parameters.__mode = 0;
         }

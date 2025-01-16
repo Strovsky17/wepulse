@@ -112,6 +112,10 @@ window.PForm = function( $scope, config )
                             else
                                 $c[i].checked = false;
                         }
+
+                        let to = $el.getAttribute('to');
+                        if( to != null  && $el.parentNode.parentNode.querySelector(to) && data != '' )
+                            $el.parentNode.parentNode.querySelector(to).innerHTML = data.join(',');
                     }
                 });
             }

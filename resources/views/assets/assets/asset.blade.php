@@ -11,8 +11,27 @@
 
         <div class='row'>
 
+            <!-- File -->
+            <div class='form-group col-md-4'>
+                <label>{!! __('register.image') !!}</label>
+                <div WepulseUpload class='wepulseUpload'>
+                    <input type="hidden" name='image' value=''/>
+                    <div class='preview'></div>
+                    <i class="fa-solid fa-x" rule='edit'></i>
+                    <div class='drag' rule='edit'>Arraste o(s) seu(s) ficheiro(s) para aqui.</div>
+                    <div class='input' rule='edit'>
+                        <i class="fa-light fa-arrow-up-from-bracket"></i>
+                        <span>{{__('form.uploadFile')}}</span>
+                        <input type="file" value=''/>
+                    </div>
+                    <span rule='view'>{!! __('register.noImage') !!}</span>
+                </div>
+            </div>
+
+            <div class='clearfix'></div>
+
             <!-- Name -->
-            <div class='form-group col-md-6'>
+            <div class='form-group col-md-6 float-left'>
                 <label>{!! __('register.name') !!}</label>
                 <span rule='view'></span>
                 <input type="text" class="form-control" name='name' placeholder='{!!__("register.namePlaceHolder")!!}' rule='edit' to='span' required/>
@@ -242,13 +261,15 @@
                     <label>{{ $f->name }}</label>
                     <div WepulseUpload class='wepulseUpload'>
                         <input type="hidden" name='field_{{ $f->id }}' value=''/>
-                        <div class='drag'>Arraste o(s) seu(s) ficheiro(s) para aqui.</div>
                         <div class='preview'></div>
-                        <div class='input'>
+                        <i class="fa-solid fa-x" rule='edit'></i>
+                        <div class='drag' rule='edit'>Arraste o(s) seu(s) ficheiro(s) para aqui.</div>
+                        <div class='input' rule='edit'>
                             <i class="fa-light fa-arrow-up-from-bracket"></i>
                             <span>{{__('form.uploadFile')}}</span>
                             <input type="file" value=''/>
                         </div>
+                        <span rule='view'> No upload file </span>
                     </div>
                 </div>    
                 @else

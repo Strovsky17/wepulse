@@ -5,7 +5,7 @@ return [
    'name' => 'Nome do Ativo',
    'namePlaceHolder' => 'Inserir Nome',
    'image' => 'Imagem do Dispositivo',
-   'imagePlaceHolder' => 'Upload da Imagem',
+   'noImage' => 'Equipamento sem imagem',
    'label' => 'Etiqueta do Ativo',
    'labelPlaceHolder' => 'Inserir número',
    'service' => 'Serviço Suportado',

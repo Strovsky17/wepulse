@@ -28,7 +28,7 @@ class AssetsController extends Controller
      */
     function list()
     {
-         $assets = Asset::all();
+        $assets = Asset::all();
         $categories = Category::all();
 
         return view( 'assets.assets.list', [ 'assets' => $assets, 'categories' => $categories ]);

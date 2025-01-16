@@ -41,27 +41,30 @@ class FilemanagerController extends Controller
             $client_id.'/'.$user->id, 'local'
         );
 
-        return 'files/'.$path;
+        return 'uploads/'.$path;
     }
     
     /**
      * Get image form WB
      */
-    public function getFile( $number, $id )
+    public function get( $client_id, $user_id, $file )
     {
-        // GEt all meta numbers
-        /*$wbs = Api::where('token', 'wb')->get();
-        foreach ($wbs as $wb)
-        {
-            if( !empty($wb->data) && !empty($wb->data['phone_number_id']) && ( $number == 0 || $number == $wb->data['phone_number_id'] ))
-            {
-                $service = new WBService($wb->id);
-                $service->getFile( $id );
-                return;
-            }
-        }
+        // Valited User
+        $user = Auth::user();
+        if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
+            return abort(401);
 
-        $service = new WBService();
-        $service->getFile( $id );*/
+        if( Session::get('client_id') != $client_id )
+            return abort(401);
+
+        $mimeType = Storage::mimeType($client_id.'/'.$user_id.'/'.$file );
+        if( empty($mimeType) )
+            return abort(404);
+
+        $content = Storage::get( $client_id.'/'.$user_id.'/'.$file );
+    
+        header('Content-type: '.$mimeType);
+        echo $content;
+        die('');
     }
 }

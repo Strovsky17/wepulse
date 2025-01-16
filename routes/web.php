@@ -63,3 +63,4 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets
  * Upload System
  */
 Route::middleware(['auth:sanctum'])->post('uploads', 'App\Http\Controllers\Api\FilemanagerController@upload');
+Route::middleware(['auth:sanctum'])->get('uploads/{client}/{user}/{file}', 'App\Http\Controllers\Api\FilemanagerController@get');

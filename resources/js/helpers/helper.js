@@ -817,6 +817,18 @@ window.WepulseUpload = function( $scope )
             $upload.querySelector('[type="hidden"]').change2 = ()=> {
                 _this.display();
             };
+           
+            // Final Value
+            $upload.querySelector('.fa-x').onclick = ()=> {
+                $upload.querySelector('[type="hidden"]').value = '';
+                $upload.querySelector('[type="file"]').value = '';
+
+                if($upload.querySelector('[type="hidden"]').change != undefined)
+                    $upload.querySelector('[type="hidden"]').change();
+                
+                if($upload.querySelector('[type="hidden"]').change2 != undefined)
+                    $upload.querySelector('[type="hidden"]').change2();
+            };
 
             $upload.querySelector('[type="file"]').value = '';
             $upload.querySelector('[type="file"]').addEventListener('change', (e) => {
@@ -835,7 +847,7 @@ window.WepulseUpload = function( $scope )
             // Start Drag on Div
             $upload.ondragover = (ev) => {
 
-                if( $scope.classList.contains('preview') )
+                if( $scope.classList.contains('onPreview') )
                 {
                     $upload.classList.remove('onDrag');
                     return false;
@@ -853,7 +865,7 @@ window.WepulseUpload = function( $scope )
             // End Drag  on Div
             $upload.ondragleave = (ev) => {
 
-                if( $scope.classList.contains('preview') )
+                if( $scope.classList.contains('onPreview') )
                 {
                     $upload.classList.remove('onDrag');
                     return false;
@@ -873,7 +885,7 @@ window.WepulseUpload = function( $scope )
             // Get Drop files
             $upload.ondrop = (ev) => {
 
-                if( $scope.classList.contains('preview') )
+                if( $scope.classList.contains('onPreview') )
                 {
                     $upload.classList.remove('onDrag');
                     return false;
