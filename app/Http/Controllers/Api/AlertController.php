@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Category;
+use App\Models\Alert;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class AlertController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,17 +38,17 @@ class CategoryController extends Controller
         if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
             return abort(401);
         
-        // Validated Categories
+        // Validated Historires
         $validated = Validator::make($request->all(), [
             'name' => 'required'
         ])->validate();
 
         // Create client
-        $Category = Category::create([
+        $Alert = Alert::create([
             'name' => $request->name
         ]);
 
-        return $Category;
+        return $Alert;
     }
 
     /**
@@ -77,14 +77,14 @@ class CategoryController extends Controller
         if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
             return abort(401);
 
-        $Category = Category::find($id);
+        $Alert = Alert::find($id);
 
         if( isset($request->name) )
-            $Category->name = $request->name;
+            $Alert->name = $request->name;
 
-        $Category->save();
+        $Alert->save();
 
-        return $Category;
+        return $Alert;
     }
 
     /**
@@ -92,6 +92,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        Category::find($id)->delete();
+        Alert::find($id)->delete();
     }
 }

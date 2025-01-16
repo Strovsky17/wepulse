@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Field;
 use App\Models\Category;
+use App\Models\History;
 use App\Models\Asset;
+use App\Models\Alert;
 
 class AssetsController extends Controller
 {
@@ -26,7 +28,7 @@ class AssetsController extends Controller
      */
     function list()
     {
-        $assets = Asset::all();
+         $assets = Asset::all();
         $categories = Category::all();
 
         return view( 'assets.assets.list', [ 'assets' => $assets, 'categories' => $categories ]);
@@ -65,29 +67,21 @@ class AssetsController extends Controller
         return view( 'assets.categories.view', ['categories' => $categories] );
     }
 
-    
+     /**
+     * Create a new History
+     */
+    function histories()
+    {
+        $histories = History::all();
+        return view( 'assets.histories.view', ['histories' => $histories] );
+    }
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Create a new Alert
+     */
     function alerts()
     {
-        return view( 'ativos.alerts.alert' );
-    }
-    function history()
-    {
-        return view( 'ativos.history.history' );
-    }
-    
-    function inventory()
-    {
-        return view( 'ativos.inventory' );
+        $alerts = Alert::all();
+        return view( 'assets.alerts.view', ['alerts' => $alerts] );
     }
 }

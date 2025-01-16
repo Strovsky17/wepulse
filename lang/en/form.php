@@ -27,4 +27,8 @@ return [
     'dropdown' => 'Select',
     'values' => 'Valores',
     'uploadFile' => 'Adicionar ficheiro',
+    'alertDate' => 'Data do Alerta',
+    'category' => 'Categoria',
+    'asset' => 'Ativo',
+    'alertType' => 'Tipo de Alerta',
 ];
