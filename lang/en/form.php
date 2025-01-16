@@ -26,4 +26,5 @@ return [
     'toggle' => 'Toggle',
     'dropdown' => 'Select',
     'values' => 'Valores',
+    'uploadFile' => 'Adicionar ficheiro',
 ];

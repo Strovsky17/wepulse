@@ -27,7 +27,9 @@ class AssetsController extends Controller
     function list()
     {
         $assets = Asset::all();
-        return view( 'assets.assets.list', [ 'assets' => $assets ]);
+        $categories = Category::all();
+
+        return view( 'assets.assets.list', [ 'assets' => $assets, 'categories' => $categories ]);
     }
     
     /**
@@ -35,7 +37,10 @@ class AssetsController extends Controller
      */
     function create()
     {
-        return view( 'assets.assets.view', [ 'asset' => [] ]  );
+        $fields = Field::all();
+        $categories = Category::orderBy('name')->get();
+
+        return view( 'assets.assets.view', [ 'asset' => [], 'categories' => $categories, 'fields' => $fields ]  );
     }
 
      /**
@@ -44,7 +49,10 @@ class AssetsController extends Controller
     function edit( $id )
     {
         $asset = Asset::find($id);
-        return view( 'assets.assets.view', [ 'asset' => $asset ] );
+        $fields = Field::all();
+        $categories = Category::orderBy('name')->get();
+
+        return view( 'assets.assets.view', [ 'asset' => $asset, 'categories' => $categories, 'fields' => $fields ] );
     }
 
     /**
@@ -52,7 +60,8 @@ class AssetsController extends Controller
      */
     function categories()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->get();
+
         return view( 'assets.categories.view', ['categories' => $categories] );
     }
 
@@ -64,14 +73,10 @@ class AssetsController extends Controller
 
 
 
-    function ativos()
-    {
-        return view( 'ativos.active' );
-    }
-    function register()
-    {
-        return view( 'ativos.register.register' );
-    }
+
+
+
+
     function alerts()
     {
         return view( 'ativos.alerts.alert' );
@@ -85,9 +90,4 @@ class AssetsController extends Controller
     {
         return view( 'ativos.inventory' );
     }
-
-    function assets()
-    {
-        return view( 'assets.assets.list' );
-    }   
 }

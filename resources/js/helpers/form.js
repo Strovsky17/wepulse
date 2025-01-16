@@ -197,13 +197,14 @@ window.PForm = function( $scope, config )
     
                         if($el.change != undefined )
                             $el.change( $el );
+                        
+                        if($el.change2 != undefined )
+                            $el.change2( $el );
     
                         _this.rules();
                     }
                 });
-            }
-
-            
+            } 
         }
     }
     

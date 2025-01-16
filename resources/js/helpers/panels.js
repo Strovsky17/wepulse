@@ -2,6 +2,8 @@ window.Panel = function( panel )
 {
     new WepulseDrop( panel.$scope );
     new WepulseToggle( panel.$scope );
+    new WepulseUpload( panel.$scope );
+    
     //new WepulseWYSIWYG( panel.$scope  );
 
     // Init Form mode

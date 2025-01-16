@@ -786,3 +786,210 @@ window.WepulseModal = function( type, callback )
     
     this.constructor();
 }
+
+/**
+ * Modal
+ */
+window.WepulseUpload = function( $scope )
+{
+    /**
+     * Create Drop System
+     */
+    function upload($upload) {
+
+        let _this = this;
+
+        /**
+         * Contruir pop up
+         */
+        this.constructor = () => {
+            
+            _this.initAction();
+            _this.initDragDrop();
+        }
+
+        /**
+         * Init Action
+         */
+        this.initAction = () => {
+
+            // Final Value
+            $upload.querySelector('[type="hidden"]').change2 = ()=> {
+                _this.display();
+            };
+
+            $upload.querySelector('[type="file"]').value = '';
+            $upload.querySelector('[type="file"]').addEventListener('change', (e) => {
+                for (let i = 0; i < e.target.files.length; i++)
+                    _this.addFile(e.target.files[i]);
+            });
+        }
+
+        /**
+         * Set Drag and Drop Actions
+         */
+        this.initDragDrop = () => {
+
+            let time = null;
+
+            // Start Drag on Div
+            $upload.ondragover = (ev) => {
+
+                if( $scope.classList.contains('preview') )
+                {
+                    $upload.classList.remove('onDrag');
+                    return false;
+                }
+                
+                // Stop drop event
+                ev.preventDefault();
+
+                if(time != null)
+                    clearInterval(time);
+
+                $upload.classList.add('onDrag');
+            }
+
+            // End Drag  on Div
+            $upload.ondragleave = (ev) => {
+
+                if( $scope.classList.contains('preview') )
+                {
+                    $upload.classList.remove('onDrag');
+                    return false;
+                }
+
+                // Stop drop event
+                ev.preventDefault();
+
+                if(time != null)
+                    clearInterval(time);
+
+                time = setTimeout( () => { 
+                    $upload.classList.remove('onDrag');
+                }, 300);
+            }
+
+            // Get Drop files
+            $upload.ondrop = (ev) => {
+
+                if( $scope.classList.contains('preview') )
+                {
+                    $upload.classList.remove('onDrag');
+                    return false;
+                }
+
+                // Stop drop event
+                ev.preventDefault();
+        
+                // Close drop pop up
+                $upload.classList.remove('onDrag');
+            
+                // Exist item to upload
+                if(  ev.dataTransfer != undefined )
+                    _this.dropMultiFile( ev.dataTransfer.items );
+            }
+        }
+
+        /**
+         * Upload drop Multifiles
+         */
+        this.dropMultiFile = ( items ) =>
+        {
+            for (let i = 0; i < items.length; i++) 
+            {
+                const item = items[i];
+                if (item.kind === "file") 
+                {
+                    const file = item.getAsFile();
+                    this.addFile(file);
+                    return true // Only one
+                }
+            }
+        }
+    
+        /**
+         * Add File to list
+         */
+        this.addFile = ( file ) => {
+            
+            let fileAcceptType = ["application/pdf", "image/jpeg", "image/png", "image/jpg", "image/webp"];
+
+            if( fileAcceptType.indexOf(file.type) != -1  )
+            {
+                if( file.size > 2000000 )
+                {
+                    alert( 'TOAST - Tamanho do ficheiro não suportado' )    
+                    return false;
+                }
+            }
+            else
+            {
+                alert( 'TOAST - Tipo de ficheiro não suportado' )
+                return false;
+            }
+        
+            // Create form data
+            let formData = new FormData();
+            formData.append("file", file);
+            
+            // Add file
+            axios.post('uploads', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {caches
+                $upload.querySelector('[type="hidden"]').value = response.data;
+                
+                if($upload.querySelector('[type="hidden"]').change != undefined)
+                    $upload.querySelector('[type="hidden"]').change();
+                
+                if($upload.querySelector('[type="hidden"]').change2 != undefined)
+                    $upload.querySelector('[type="hidden"]').change2();
+            })
+            .catch(function (err) {
+                alert( 'TOAST - Ocorreu um erro no upload' )
+            });
+        }
+
+        /**
+         * display
+         */
+        this.display = () => {
+
+            let file = $upload.querySelector('[type="hidden"]').value;
+            if( file != '')
+            {
+                let ext = file.split('.');
+                if( ext[ ext.length - 1 ].toLowerCase() == 'pdf' )
+                {
+                    $upload.querySelector('.preview').style.backgroundImage = '';
+                    $upload.querySelector('.preview').innerHTML = '';
+                }
+                else
+                {
+                    $upload.querySelector('.preview').style.backgroundImage = 'url("'+file+'")';
+                    $upload.querySelector('.preview').innerHTML = '';
+                }
+
+                $upload.classList.add('onPreview');
+            }
+            else
+            {
+                $upload.classList.remove('onPreview');
+                $upload.querySelector('.preview').style.backgroundImage = '';
+                $upload.querySelector('.preview').innerHTML = '';
+            }
+        }
+
+        this.constructor();
+    }
+    
+    /**
+     * Contruir pop up
+     */
+    this.constructor = () => {
+
+        let WepulseUpload = $scope.querySelectorAll('[WepulseUpload]');
+        for (let i = 0; i < WepulseUpload.length; i++)
+            new upload( WepulseUpload[i] );
+    }
+
+    this.constructor();
+}

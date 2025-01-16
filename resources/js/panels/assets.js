@@ -303,14 +303,14 @@ window.PanelAsset = function( $scope, asset )
 
                 let data = {
                     name: f.parameters.__name,
-                    category: f.parameters.__category,
+                    category_id: f.parameters.__category_id,
                     risk: f.parameters.__risk,
                     criticality: f.parameters.__criticality,
                     data: {}
                 }
 
                 // Key não foi encontrada passa a informação para o data
-                let ignore = [ '__name','__category', '__risk', '__criticality', '__load', '__id', '__mode' ];
+                let ignore = [ '__name','__category_id', '__risk', '__criticality', '__load', '__id', '__mode' ];
                 let properties = Object.getOwnPropertyNames(f.parameters);
                 properties.forEach( key => {
                     if( ignore.indexOf( key ) == -1 )
@@ -373,7 +373,7 @@ window.PanelAsset = function( $scope, asset )
             _this.parameters.__name = asset.name;
             _this.parameters.__risk = asset.risk;
             _this.parameters.__criticality = asset.criticality;
-            _this.parameters.__category = asset.category;
+            _this.parameters.__category_id = asset.category_id;
 
             for (const key in asset.data) 
                 _this.parameters['__'+key] = asset.data[key] ?? '';
@@ -451,7 +451,7 @@ window.PanelAssets = function( $scope, __config )
             search: false,
             columns: {
                 name: window.tableLang.name,
-                category: `<div class="text-center">${window.tableLang.category}</div>`,
+                category_id: `<div class="text-center">${window.tableLang.category}</div>`,
                 risk: `<div class="text-center">${window.tableLang.risk}</div>`,
                 responsable: `<div class="text-center">${window.tableLang.responsable}</div>`,
                 alerts: `<div class="text-center">${window.tableLang.alerts}</div>`,
@@ -463,14 +463,20 @@ window.PanelAssets = function( $scope, __config )
                 else
                     return '<div class="text-center"><i class="fa-regular fa-square-xmark"></i></div>';
             },
-            process_value_category: (v) => {
-                return `<div class="text-center">${v}</div>`;
+            process_value_category_id: (v) => {
+
+                for (let i = 0; i < __config.categories.length; i++)
+                {
+                    if(__config.categories[i].id == v)
+                        return `<div class="text-center">${__config.categories[i].name}</div>`;    
+                }
+
+                return `<div class="text-center"></div>`;
             },
             process_value_responsable: (v) => {
-                return `<div class="text-center">${v.data.responsable}</div>`;
+                return `<div class="text-center">${v.data.responsable ?? '-'}</div>`;
             },
             process_value_risk: (v) => {
-
                 if( v == 1 )
                     return `<div class="text-center text-success">Baixo</div>`;
                 else if( v == 2 )

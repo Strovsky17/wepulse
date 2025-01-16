@@ -96,7 +96,18 @@
             <div class='form-group col-md-4'>
                 <label>{!! __('register.category') !!}</label>
                 <span rule='view'></span>
-                <input type="text" class="form-control" name='category' placeholder='{!!__("register.categoryPlaceHolder")!!}' rule='edit' to='span' required/>
+                <div WepulseDrop name='category_id' action='update' required to='span' rule='edit'>
+                    <div>
+                        <span></span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div>
+                        <div value=''>Nenhuma</div>
+                        @foreach($categories as $c)
+                        <div value='{{$c->id}}'>{{$c->name}}</div>
+                        @endforeach
+                    </div>
+                </div>                
             </div>
 
             <!-- Address -->
@@ -163,7 +174,7 @@
                 <input type="text" class="form-control" name='currentValue' placeholder='{!!__("register.valuePlaceHolder")!!}' rule='edit' to='span'/>
             </div>
             
-            <!-- Current Value -->
+            <!-- Description -->
             <div class='form-group col-md-12'>
                 <label>{!! __('register.description') !!}</label>
                 <span rule='view'></span>
@@ -177,6 +188,73 @@
                 <input type="text" class="form-control" name='responsable' placeholder='{!!__("register.responsablePlaceHolder")!!}' rule='edit' to='span'/>
             </div>
 
+            <!-- Extra field -->
+            @foreach( $fields as $f )
+                @if( $f->type == 'dropdown' )
+                <!-- Dropdown -->
+                <div class='form-group col-md-6'>
+                    <label>{{ $f->name }}</label>
+                    <span rule='view'></span>
+                    <div WepulseDrop name='field_{{ $f->id }}' action='update' to='span' rule='edit' {!! $f->required ? 'required':'' !!}>
+                        <div>
+                            <span></span>
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+                        <div>
+                            <div value=''></div>
+                            @foreach( $f->data as $d )
+                                <div value='{{$d}}'>{{$d}}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                @elseif( $f->type == 'checkbox' || $f->type == 'radiobutton' )
+                <!-- Checkbox && Radio -->          
+                <div class='form-group col-md-6 form-radio'>
+                    <label>{{ $f->name }}</label>
+                    <div>
+                        <span rule='view'></span>
+                        @foreach( $f->data as $d )
+                        <div class='inline' rule='edit'>
+                            <input type='{{ $f->type == "checkbox" ? "checkbox" : "radio" }}' name='field_{{ $f->id }}' value='{{$d}}' to='span' {!! $f->required ? 'required':'' !!}/>
+                            <span>{{$d}}</span>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @elseif( $f->type == 'textarea' )
+                <!-- Textarea -->
+                <div class='form-group col-md-6'>
+                    <label>{{ $f->name }}</label>
+                    <span rule='view'></span>
+                    <textarea class="form-control" name='field_{{ $f->id }}' rule='edit' to='span' {!! $f->required ? 'required':'' !!}></textarea>
+                </div>    
+                @elseif( $f->type == 'input' )
+                <!-- Input -->
+                <div class='form-group col-md-6'>
+                    <label>{{ $f->name }}</label>
+                    <span rule='view'></span>
+                    <input type="text" class="form-control" name='field_{{ $f->id }}' placeholder='{{ $f->description }}' rule='edit' to='span' {!! $f->required ? 'required':'' !!}/>
+                </div> 
+                @elseif( $f->type == 'file' )
+                <!-- File -->
+                <div class='form-group col-md-6'>
+                    <label>{{ $f->name }}</label>
+                    <div WepulseUpload class='wepulseUpload'>
+                        <input type="hidden" name='field_{{ $f->id }}' value=''/>
+                        <div class='drag'>Arraste o(s) seu(s) ficheiro(s) para aqui.</div>
+                        <div class='preview'></div>
+                        <div class='input'>
+                            <i class="fa-light fa-arrow-up-from-bracket"></i>
+                            <span>{{__('form.uploadFile')}}</span>
+                            <input type="file" value=''/>
+                        </div>
+                    </div>
+                </div>    
+                @else
+                    {{ $f->type }}
+                @endif
+            @endforeach
         </div>
 
         <div class='form-footer'>
@@ -187,7 +265,6 @@
         <input type='hidden' name='load' value='1'/>
         <input type='hidden' name='id' value=''/>
         <input type='hidden' name='mode' value='2'/>
-
     </div>
 
     <div class='load d-none' rule='load'><i class="fa-duotone fa-solid fa-spinner-third"></i></div>

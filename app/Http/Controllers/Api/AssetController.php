@@ -41,7 +41,7 @@ class AssetController extends Controller
         // Validated fields
         $validated = Validator::make($request->all(), [
             'name' => 'required',
-            'category' => 'required',
+            'category_id' => 'required',
             'risk' => 'required',
             'criticality' => 'required',
             'data' => 'required',
@@ -50,7 +50,7 @@ class AssetController extends Controller
         // Create client
         $asset = Asset::create([
             'name' => $request->name,
-            'category' => $request->category,
+            'category_id' => $request->category_id,
             'risk' => $request->risk,
             'criticality' => $request->criticality,
             'data' => $request->data ?? [],
@@ -88,7 +88,7 @@ class AssetController extends Controller
         // Validated fields
         $validated = Validator::make($request->all(), [
             'name' => 'required',
-            'category' => 'required',
+            'category_id' => 'required',
             'risk' => 'required',
             'criticality' => 'required',
             'data' => 'required',
@@ -99,8 +99,8 @@ class AssetController extends Controller
         if( isset($request->name) )
             $asset->name = $request->name;
 
-        if( isset($request->category) )
-            $asset->category = $request->category;
+        if( isset($request->category_id) )
+            $asset->category_id = $request->category_id;
 
         if( isset($request->risk) )
             $asset->risk = $request->risk;

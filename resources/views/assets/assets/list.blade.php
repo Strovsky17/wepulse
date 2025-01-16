@@ -24,7 +24,8 @@
     <script>
         window.addEventListener('load', () => {
             new PanelAssets( document.querySelector('.panel-assets'), {
-                data: {!! json_encode($assets) !!}
+                data: {!! json_encode($assets) !!},
+                categories: {!! json_encode($categories) !!},
             });
         })
     </script>
