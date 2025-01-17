@@ -11,7 +11,7 @@
             <!-- AlertType -->
             <div class='form-group col-md-12'>
             <label>{!! __('form.alertType') !!}</label>
-                <div WepulseDrop name='type' action='update'>
+                <div WepulseDrop name='alert' action='update'>
                     <div>
                         <span></span>
                         <i class="fa-solid fa-caret-down"></i>
@@ -25,7 +25,7 @@
             <!-- Asset -->
             <div class='form-group col-md-12'>
             <label>{!! __('form.asset') !!}</label>
-                <div WepulseDrop name='type' action='update'>
+                <div WepulseDrop name='asset' action='update'>
                     <div>
                         <span></span>
                         <i class="fa-solid fa-caret-down"></i>
@@ -39,7 +39,7 @@
             <!-- Category -->
             <div class='form-group col-md-12'>
                 <label>{!! __('form.category') !!}</label>
-                <div WepulseDrop name='type' action='update'>
+                <div WepulseDrop name='category' action='update'>
                     <div>
                         <span></span>
                         <i class="fa-solid fa-caret-down"></i>

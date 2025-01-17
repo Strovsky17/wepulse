@@ -8,10 +8,40 @@
         
         <div class='row'>
 
-            <!-- Name -->
+            <!-- Equipment -->
             <div class='form-group col-md-12'>
-                <label>{!! __('form.name') !!}</label>
-                <input type="text" class="form-control" name='name' placeholder='{!!__("form.namePlaceholder")!!}' required />
+                <label>{!! __('form.equipment') !!}</label>
+                <input type="text" class="form-control" name='equipment' placeholder='{!!__("form.equipmentPlaceholder")!!}' required />
+            </div>
+
+             <!-- Category -->
+            <div class='form-group col-md-12'>
+                <label>{!! __('form.category') !!}</label>
+                <span rule='view'></span>
+                <div WepulseDrop name='category_id' action='update' required to='span' rule='edit'>
+                    <div>
+                        <span></span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div>
+                        <div value=''>Nenhuma</div>
+                        @foreach($categories as $c)
+                        <div value='{{$c->id}}'>{{$c->name}}</div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register -->
+            <div class='form-group col-md-12'>
+                <label>{!! __('form.register') !!}</label>
+                <input type="text" class="form-control" name='register' placeholder='{!!__("form.registerPlaceholder")!!}' required />
+            </div>
+
+            <!-- Date -->
+            <div class='form-group col-md-12'>
+                <label>{!! __('form.date') !!}</label>
+                <input type="date" class="form-control" name='date' placeholder='{!!__("form.datePlaceholder")!!}' required />
             </div>
         </div>
     </div>

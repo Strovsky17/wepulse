@@ -790,7 +790,7 @@ window.PanelAssetsTableHistory = function( $scope, __config )
             perPage: false,
             search: false,
             columns: {
-                name: window.tableLang.name,
+                name: window.tableLang.equipment,
                 category: window.tableLang.category,
                 register: window.tableLang.register,
                 date: window.tableLang.date,
@@ -867,6 +867,7 @@ window.PanelAssetsHistory = function( $scope )
                 }
 
                 _this.parameters.__load = 1;
+
                 // Create
                 if( _this.id == '' )
                 {
@@ -997,7 +998,7 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             perPage: false,
             search: false,
             columns: {
-                name: window.tableLang.name,
+                type: window.tableLang.type,
                 asset: window.tableLang.asset,
                 category: window.tableLang.category,
                 date: window.tableLang.date,

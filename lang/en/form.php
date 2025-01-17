@@ -31,4 +31,10 @@ return [
     'category' => 'Categoria',
     'asset' => 'Ativo',
     'alertType' => 'Tipo de Alerta',
-];
+    'equipment' => 'Equipamento',
+    'register' => 'Registo',
+    'equipmentPlaceholder' => 'Adicione um equipamento',
+    'categoryPlaceholder' => 'Adicione uma categoria',
+    'registerPlaceholder' => 'Adicione um registo',
+    'datePlaceholder' => 'Adicione uma data',
+]; 

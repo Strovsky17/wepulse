@@ -16,7 +16,7 @@ return [
     'responsable' => 'Responsável',
     'alerts' => 'Alertas',
     'type' => 'Tipo',
-    'active' => 'Ativo',
+    'asset' => 'Ativo',
     'search' => 'Perquisar',
     'cancel' => 'Cancelar',
     'delete' => 'Eliminar',
