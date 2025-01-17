@@ -13,6 +13,21 @@
                 <label>{!! __('form.name') !!}</label>
                 <input type="text" class="form-control" name='name' placeholder='{!!__("form.namePlaceholder")!!}' required />
             </div>
+
+            <div class='form-group col-md-12'>
+                <label>{!! __('form.email') !!}</label>
+                <input type="text" class="form-control" name='email' placeholder='{!!__("form.emailPlaceholder")!!}' required />
+            </div>
+
+            <div class='form-group col-md-12'>
+                <label>{!! __('form.contact') !!}</label>
+                <input type="text" class="form-control" name='contact' placeholder='{!!__("form.contactPlaceholder")!!}' required />
+            </div>
+
+            <div class='form-group col-md-12'>
+                <label>{!! __('form.departmentcompany') !!}</label>
+                <input type="text" class="form-control" name='departmentcompany' placeholder='{!!__("form.departmentcompanyPlaceholder")!!}' required />
+            </div>
         </div>
     </div>
 

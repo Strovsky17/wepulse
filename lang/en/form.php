@@ -37,4 +37,11 @@ return [
     'categoryPlaceholder' => 'Adicione uma categoria',
     'registerPlaceholder' => 'Adicione um registo',
     'datePlaceholder' => 'Adicione uma data',
+    'departmentcompany' => 'Departamento/Empresa',
+    'contact' => 'Contacto',
+    'email' => 'E-mail',
+    'departmentcompanyPlaceholder' => 'Adicione um Departamento/Empresa',
+    'emailPlaceholder' => 'Adicione um E-mail',
+    'contactPlaceholder' => 'Adicione um contacto',
+
 ]; 
