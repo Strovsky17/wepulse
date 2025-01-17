@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/fie
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/categories', 'App\Http\Controllers\Web\AssetsController@categories');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/histories', 'App\Http\Controllers\Web\AssetsController@histories');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/alerts', 'App\Http\Controllers\Web\AssetsController@alerts');
-
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/client/responsables', 'App\Http\Controllers\Web\AssetsController@responsables');
 
 
 /*Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/ativos', 'App\Http\Controllers\Web\AssetsController@ativos');

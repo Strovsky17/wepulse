@@ -61,6 +61,10 @@
                     <a href='/assets/fields' class='{{ $subpage == "fields" ? "active" : "" }}' >
                         {{ __('menu.personalFields') }}
                     </a>
+                    </a>
+                    <a href='/client/responsables' class='{{ $subpage == "responsables" ? "active" : "" }}' >
+                        {{ __('menu.responsable') }}
+                    </a>
                 </div>
             </div>
 
