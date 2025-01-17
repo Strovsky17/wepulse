@@ -28,4 +28,6 @@ return [
     'rowsPerPage' => 'Conteúdos por pagina',
     'areYouSure' => 'Tem certeza?',
     'deleteBody' => 'Tem certeza que pertende eliminar este registo ? Este processo não pode ser revertido.',
-];
+    'departmentcompany' => 'Departamento/Empresa',
+    'contact' => 'Contacto',
+]; 

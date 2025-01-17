@@ -58,6 +58,7 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/assets', 'App\Http\Controllers\Api\AssetController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/history', 'App\Http\Controllers\Api\HistoryController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/alert', 'App\Http\Controllers\Api\AlertController');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('client/responsable', 'App\Http\Controllers\Api\ResponsableController');
 
 /**
  * Upload System

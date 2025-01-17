@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\History;
 use App\Models\Asset;
 use App\Models\Alert;
+use App\Models\Responsable;
 
 class AssetsController extends Controller
 {
@@ -85,5 +86,12 @@ class AssetsController extends Controller
         //$alerts = Alert::all();
         $alerts = [];
         return view( 'assets.alerts.view', ['alerts' => $alerts] );
+    }
+
+    function responsables()
+    {
+        //$responsables = Responsable::all();
+        $responsables = [];
+        return view( 'client.responsables.view', ['responsables' => $responsables] );
     }
 }

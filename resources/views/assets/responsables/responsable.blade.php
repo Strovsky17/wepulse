@@ -26,7 +26,7 @@
 
     <script>
         window.addEventListener('load', () => {
-            window.pAssetsCategory = new PanelAssetsCategory( document.querySelector('.panel-assets-responsable') );
+            window.pAssetsResponsable = new PanelAssetsResponsable( document.querySelector('.panel-assets-responsable') );
         })
     </script>
 </div>
