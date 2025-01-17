@@ -18,7 +18,7 @@
     <script>
         window.addEventListener('load', () => {
             new PanelAssetsTableResponsable( document.querySelector('.panel-assets-table-responsable'), {
-                data: {!! json_encode($categories) !!}
+                data: {!! json_encode($responsables) !!}
             });
         })
     </script>

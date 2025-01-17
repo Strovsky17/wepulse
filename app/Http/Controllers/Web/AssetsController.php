@@ -92,6 +92,6 @@ class AssetsController extends Controller
     {
         //$responsables = Responsable::all();
         $responsables = [];
-        return view( 'client.responsables.view', ['responsables' => $responsables] );
+        return view( 'assets.responsables.view', ['responsables' => $responsables] );
     }
 }

@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/fie
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/categories', 'App\Http\Controllers\Web\AssetsController@categories');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/histories', 'App\Http\Controllers\Web\AssetsController@histories');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/alerts', 'App\Http\Controllers\Web\AssetsController@alerts');
-Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/client/responsables', 'App\Http\Controllers\Web\AssetsController@responsables');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/responsables', 'App\Http\Controllers\Web\AssetsController@responsables');
 
 
 /*Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/ativos/ativos', 'App\Http\Controllers\Web\AssetsController@ativos');
@@ -58,7 +58,7 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/assets', 'App\Http\Controllers\Api\AssetController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/history', 'App\Http\Controllers\Api\HistoryController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/alert', 'App\Http\Controllers\Api\AlertController');
-Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('client/responsable', 'App\Http\Controllers\Api\ResponsableController');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/responsable', 'App\Http\Controllers\Api\ResponsableController');
 
 /**
  * Upload System
