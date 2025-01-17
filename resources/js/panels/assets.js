@@ -287,8 +287,7 @@ window.PanelAsset = function( $scope, asset )
     // Rules
     this.rules = {
         preload: (p) => { return p.__mode != '2'; },
-        view: (p) => { return p.__mode == '0'; },
-        edit: (p) => { return p.__mode == '1'; },
+        edit: (p) => { return p.__id != ''; },
         load: (p) => { return p.__load == '1'  }
     }
 
@@ -316,7 +315,6 @@ window.PanelAsset = function( $scope, asset )
                     if( ignore.indexOf( key ) == -1 )
                         data.data[ key.replace('__', '') ] = f.parameters[key];  
                 });
-
 
                 // Create
                 if( _this.parameters.__id == '' )
@@ -346,6 +344,12 @@ window.PanelAsset = function( $scope, asset )
         },
         edit: (f) => {
             f.parameters.__mode = 1;
+        },
+        changeShowHide: (f , $el) => {
+            if(f.__id != '')
+                $el.classList.toggle('show');
+            else
+                $el.classList.add('show');
         }
 
     }
@@ -384,6 +388,13 @@ window.PanelAsset = function( $scope, asset )
             }
 
             _this.parameters.__mode = 0;
+
+            // Depois da pagina ter feito load
+            if(window.pAssetTableEvents != undefined)
+            {
+                window.pAssetTableEvents.setAsset( asset );
+                window.pAssetTableEvents.show();
+            }
         }
         else
         {
@@ -393,6 +404,11 @@ window.PanelAsset = function( $scope, asset )
         setTimeout(() => {
             _this.parameters.__load = 0;
         },500);
+    }
+
+    // Get Asset
+    this.getAsset = () => {
+        return asset;
     }
 
     _this._construtor();
@@ -720,7 +736,7 @@ window.PanelAssetsCategory = function( $scope )
 }
 
 // Show user of the BO
-window.PanelAssetsTableHistory = function( $scope, __config )
+window.PanelAssetsTableEvents = function( $scope, __config )
 {
     let _this = this;
 
@@ -730,19 +746,93 @@ window.PanelAssetsTableHistory = function( $scope, __config )
     this._construtor = function()
     {
         new Panel( this );
-        this.initTable();
-
+    
         _this.parameters.__search = '';
+        _this.asset = null;
+        _this.initTable();
     }
 
-    this.rules = {}
+    // Initialize table
+    this.initTable = () => {
+
+        let requestParameters = {};
+        let columns = {
+            asset: window.tableLang.asset,
+            date: window.tableLang.date,
+            who: window.tableLang.who,
+            description: window.tableLang.sortDescription,
+            next: window.tableLang.nextAction,
+        };
+
+        if( __config.asset_mode == 1 )
+        {
+            _this.asset = window.pAsset.getAsset();
+
+            delete columns.asset;             
+            requestParameters = { 'asset_id': _this.asset.id ?? 0 }
+
+            if( _this.asset.id != null )
+                _this.show();
+        }
+        else
+        {
+            _this.show();
+        }
+
+        this.table = new SuperTable( document.querySelector('.table'),{
+            paginationUrl: 'assets/search/event',
+            rowsPerPage: 10,
+            perPage: false,
+            search: false,
+            requestParameters: requestParameters,
+            columns: columns,
+            actions:[
+                { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
+                    window.pAssetsHistory.open( d,  _this.processList );
+                }},
+                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
+                    window.WepulseModal( 'confirm', ( flag ) => {
+                        if( flag == true )
+                        {
+                            axios.delete( 'assets/category/'+d.id ).then( (response) => {
+                                _this.removeList(d.id);
+                            }).catch(() => {
+
+                            });
+                        }
+                    });
+                }},
+            ]
+        });
+    }
+
+    this.rules = {
+        mode: () => { return __config.asset_mode }
+    }
 
     this.actions = {
+
         add: () => {
-            window.pAssetsHistory.open( null,  _this.processList );
+            window.pAssetsEvent.setAsset( _this.asset );
+            window.pAssetsEvent.open( null,  _this.processList );
         },
+        changeShowHide: (f , $el) => {
+            if(f.__id != '')
+                $el.classList.toggle('show');
+            else
+                $el.classList.add('show');
+        }
     }
 
+    // Set Asset
+    this.setAsset = (asset) => {
+        
+        _this.asset = asset;
+        _this.table.config.requestParameters = { 'asset_id': _this.asset.id ?? 0 };
+        _this.show();
+    }
+
+    // Process info
     this.process = () => {
 
         if( this.table != null )
@@ -787,54 +877,11 @@ window.PanelAssetsTableHistory = function( $scope, __config )
         _this.table.search();
     }
 
-    // Initialize table
-    this.initTable = () => {
-
-        this.table = new SuperTable( document.querySelector('.table'),{
-            rowsPerPage: 10,
-            perPage: false,
-            search: false,
-            columns: {
-                name: window.tableLang.name,
-                category: window.tableLang.category,
-                register: window.tableLang.register,
-                date: window.tableLang.date,
-            },
-            data: __config.data,
-            process_value_required: (v) => {
-                if(v == true)
-                    return '<div class="text-center"><i class="fa-regular fa-square-check"></i></div>';
-                else
-                    return '<div class="text-center"><i class="fa-regular fa-square-xmark"></i></div>';
-            },
-            process_value_type: (v) => {
-                return `<div class="text-center">${v}</div>`;
-            },
-            actions:[
-                { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
-                    window.pAssetsHistory.open( d,  _this.processList );
-                }},
-                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
-                    window.WepulseModal( 'confirm', ( flag ) => {
-                        if( flag == true )
-                        {
-                            axios.delete( 'assets/category/'+d.id ).then( (response) => {
-                                _this.removeList(d.id);
-                            }).catch(() => {
-
-                            });
-                        }
-                    });
-                }},
-            ]
-        });
-    }
-
     _this._construtor();
 }
 
 // Show user of the BO
-window.PanelAssetsHistory = function( $scope )
+window.PanelAssetsEvent = function( $scope )
 {
     let _this = this;
 
@@ -844,11 +891,14 @@ window.PanelAssetsHistory = function( $scope )
     this._construtor = function()
     {
         new Panel( this );
+
+        _this.parameters.__asset = 1;
     }
 
     // Rules
     this.rules = {
-        load: (p) => { return p.__load == '1'  }
+        load: (p) => { return p.__load == '1'  },
+        asset: (p) => { return p.__asset == '1'  },
     }
 
     // Actions
@@ -904,6 +954,44 @@ window.PanelAssetsHistory = function( $scope )
         },
     }
 
+    // Create Assets
+    this.createAssets = (assets) => {
+
+        let options = $scope.querySelector('[name="asset_id"] > div:nth-child(2)');
+        options.innerHTML = '<div value=""></div>';
+
+        for (let i = 0; i < assets.length; i++)
+            options.innerHTML += `<div value="${assets[i].id}">${assets[i].name}</div>`;
+    }
+
+    // Set Assets
+    this.setAsset = ( asset ) => {
+
+        if(asset == null)
+        {
+            _this.parameters.__asset = 1;
+            _this.parameters.__load = 1;
+
+            axios.post( 'assets/search/asset', { all: true, simple: true } ).then( (response) => {
+                _this.createAssets( response.data );
+
+                _this.parameters.__asset_id = '';
+                _this.parameters.__load = 0;
+            }).catch((r) => {
+    
+                console.log(r);
+                _this.parameters.__load = 0;
+            });
+        }
+        else
+        {
+            _this.createAssets( [asset] );
+
+            _this.parameters.__asset_id = asset.id;
+            _this.parameters.__asset = 0;
+        }
+    }
+
     // Open field
     this.openDisplay = (d) => {
 
@@ -925,6 +1013,20 @@ window.PanelAssetsHistory = function( $scope )
 
     _this._construtor();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Show user of the BO
 window.PanelAssetsTableAlert = function( $scope, __config )

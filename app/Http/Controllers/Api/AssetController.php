@@ -15,9 +15,19 @@ class AssetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = new Asset;
+        
+        $query = $query->orderBy('name');
+
+        if($request->simple)
+            $query = $query->select('id', 'name');
+
+        if($request->all)
+            return $query->get();
+    
+        return $query->paginate(15);
     }
 
     /**

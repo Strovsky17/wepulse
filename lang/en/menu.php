@@ -2,6 +2,7 @@
 
 return [
     'assets' => 'Ativos',
+    'asset' => 'Ativo',
     'profile' => 'Perfil',
     'register' => 'Registar',
     'alerts' => 'Alertas',
@@ -23,10 +24,10 @@ return [
     'cncsReports' => 'Relatório Anual CNCS',
     'archives' => 'Arquivo',
     'edit' => 'Editar',
-    'historty' => 'Histórico',  
+    'events' => 'Eventos',  
     'customFields' => 'Campos personalizados',
     'client' => 'Cliente',
     'personalFields' => 'Campos Personalizados',
     'personalField' => 'Campo Personalizado',
     'category' => 'Categoria',
-];  
+];

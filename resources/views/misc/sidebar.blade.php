@@ -43,24 +43,26 @@
                     <a href='/ativos/edit' class='{{ $subpage == "edit" ? "active" : "" }}' >
                         {{ __('menu.edit') }}
                     </a>-->
-                    <a href='/assets' class='{{ $subpage == "assets" ? "active" : "" }}' >
-                        {{ __('menu.assets') }}
-                    </a>
                     <a href='/assets/asset' class='{{ $subpage == "register" ? "active" : "" }}' >
                         {{ __('menu.register') }}
+                    </a>
+                    <a href='/assets' class='{{ $subpage == "assets" ? "active" : "" }}' >
+                        {{ __('menu.assets') }}
+                    </a>                    
+                    <a href='/assets/alerts' class='{{ $subpage == "alerts" ? "active" : "" }}' >
+                        {{ __('menu.alerts') }}
                     </a>
                     <a href='/assets/categories' class='{{ $subpage == "categories" ? "active" : "" }}' >
                         {{ __('menu.category') }}
                     </a>
-                    <a href='/assets/histories' class='{{ $subpage == "histories" ? "active" : "" }}' >
-                        {{ __('menu.history') }}
-                    </a>
-                    <a href='/assets/alerts' class='{{ $subpage == "alerts" ? "active" : "" }}' >
-                        {{ __('menu.alerts') }}
-                    </a>
                     <a href='/assets/fields' class='{{ $subpage == "fields" ? "active" : "" }}' >
                         {{ __('menu.personalFields') }}
                     </a>
+                    <a href='/assets/events' class='{{ $subpage == "histories" ? "active" : "" }}' >
+                        {{ __('menu.events') }}
+                    </a>
+                    
+                    
                 </div>
             </div>
 

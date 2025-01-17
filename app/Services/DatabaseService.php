@@ -67,6 +67,7 @@ class DatabaseService {
                 } 
                 catch (\Throwable $th) 
                 {
+                    dd($th);
                     if( $debug )
                     {
                         echo '----------------<br>';

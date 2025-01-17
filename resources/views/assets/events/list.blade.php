@@ -1,14 +1,12 @@
-@extends('page')
-@extends('misc.sidebar', [ "page" => "assets", "subpage" => "assets" ])
-@extends('misc.topbar', ["title" => __('menu.assets')])
+<div class='panel form row panel-assets-table-events d-none'>
 
-@section('content')
-<div class='panel form row panel-assets'>
-    <div class='panel-header' >
-        <h2>{!!__("menu.assets")!!}</h2>
+    <div class='panel-header {{ !isset($asset) ? "show" : "" }}' action='changeShowHide'>
+        <h2>{!!__("menu.events")!!}</h2>
+        <i class="fa-sharp-duotone fa-regular fa-chevron-down" rule='mode'></i>
     </div>
-    
+
     <div class='form'>
+
         <div class='form-header'>
             @if( auth()->user()->role == 'superadmin' || auth()->user()->roleClient == 'admin' )
             <button class='btn btn-primary' action='add'><i class="fa-thin fa-plus"></i> {{ __("form.add") }}</button>
@@ -25,11 +23,9 @@
 
     <script>
         window.addEventListener('load', () => {
-            new PanelAssets( document.querySelector('.panel-assets'), {
-                data: {!! json_encode($assets) !!},
-                categories: {!! json_encode($categories) !!},
+            window.pAssetTableEvents = new PanelAssetsTableEvents( document.querySelector('.panel-assets-table-events'), {
+                asset_mode: {{ isset($asset) ? 1 : 0 }}
             });
         })
     </script>
 </div>
-@endsection

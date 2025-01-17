@@ -70,11 +70,11 @@ class AssetsController extends Controller
      /**
      * Create a new History
      */
-    function histories()
+    function events()
     {
         //$histories = History::all();
-        $histories = [];
-        return view( 'assets.histories.view', ['histories' => $histories] );
+        $events = [];
+        return view( 'assets.events.view', ['events' => $events] );
     }
 
     /**

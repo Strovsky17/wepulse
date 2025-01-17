@@ -9,23 +9,53 @@
         display: table;
         width: 100%;
         padding: 0 10px;
-    
 
         h2 {
             float:left;
             margin-bottom: 20px;
         }
 
-        button { 
-            float: right;
-            margin-left: 20px;
-            margin-bottom: 16px;
-        }
 
-        .search {
+        &[action] {
 
-            float: right;
-            margin-bottom: 20px;
+            position: relative;
+            cursor: pointer;
+
+            h2 {
+                margin:0;
+            }
+
+            i.fa-chevron-down {
+                font-size: 25px;
+                height: 40px;
+                width: 40px;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                position: absolute;
+                right: 0px;
+                transform: rotate(-90deg);
+            }
+
+            + div {
+                max-height: 0px;
+                overflow: hidden;
+
+                > div {
+                    margin-top: 40px;
+                }
+            }
+
+            &.show {
+
+                i.fa-chevron-down {
+                    transform: rotate(0deg);
+                }
+
+                + div {
+                    max-height: 10000px;
+                }
+            }
         }
     }
 }

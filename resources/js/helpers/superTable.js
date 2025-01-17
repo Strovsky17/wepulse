@@ -11,6 +11,7 @@ window.SuperTable = function( $scope, config )
         columns: null,
         create: null,
         paginationUrl: '',
+        requestParameters: {},
         lang: {
             search: window.tableLang.search,
             next: window.tableLang.next,
@@ -195,7 +196,7 @@ window.SuperTable = function( $scope, config )
         if( _this.ajax )
         {
             // Get the information from template
-            await axios.post(_this.config.paginationUrl, { 'per_page': _this.config.rowsPerPage }).then((response) => 
+            await axios.post(_this.config.paginationUrl, { 'per_page': _this.config.rowsPerPage, ...config.requestParameters }).then((response) => 
             {
                 _this.total = response.data.total;
                 _this.dataPage[ 1 ] = response.data.data;

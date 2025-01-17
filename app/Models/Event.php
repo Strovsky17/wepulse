@@ -5,29 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class History extends Model
+class Event extends Model
 {
     use SoftDeletes;
 
     protected $connection = 'app';
-    protected $table = 'histories';
+    protected $table = 'events';
 
     /**
      * The attributes that are mass assignable.
      */
     protected $fillable = [
+        'asset_id',
+        'date',
         'name',
-        'type',
         'description',
-        'data',
-        'required',
+        'obs',
+        'next_event',
+        'guatantee'
     ];
 
     /***
      * Tranforms values
      */ 
     protected $casts = [
-        'data' => 'array',
-        'required' => 'boolean',
+        
     ];
 }
