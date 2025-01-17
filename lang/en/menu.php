@@ -30,4 +30,6 @@ return [
     'personalFields' => 'Campos Personalizados',
     'personalField' => 'Campo Personalizado',
     'category' => 'Categoria',
-];
+    'responsable' => 'Responsável',
+    'responsables' => 'Responsáveis',
+];  

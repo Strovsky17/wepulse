@@ -16,7 +16,7 @@ return [
     'responsable' => 'Responsável',
     'alerts' => 'Alertas',
     'type' => 'Tipo',
-    'active' => 'Ativo',
+    'asset' => 'Ativo',
     'search' => 'Perquisar',
     'cancel' => 'Cancelar',
     'delete' => 'Eliminar',
@@ -28,4 +28,6 @@ return [
     'rowsPerPage' => 'Conteúdos por pagina',
     'areYouSure' => 'Tem certeza?',
     'deleteBody' => 'Tem certeza que pertende eliminar este registo ? Este processo não pode ser revertido.',
-];
+    'departmentcompany' => 'Departamento/Empresa',
+    'contact' => 'Contacto',
+]; 

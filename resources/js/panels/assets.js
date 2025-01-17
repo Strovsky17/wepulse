@@ -922,6 +922,7 @@ window.PanelAssetsEvent = function( $scope )
                 }
 
                 _this.parameters.__load = 1;
+
                 // Create
                 if( _this.id == '' )
                 {
@@ -1104,7 +1105,7 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             perPage: false,
             search: false,
             columns: {
-                name: window.tableLang.name,
+                type: window.tableLang.type,
                 asset: window.tableLang.asset,
                 category: window.tableLang.category,
                 date: window.tableLang.date,
@@ -1293,6 +1294,223 @@ window.PanelAssetsAlert = function( $scope )
         _this.ruleDisplay();
     }
 
+
+    _this._construtor();
+}
+
+
+// Show user of the BO
+window.PanelAssetsTableResponsable = function( $scope, __config )
+{
+    let _this = this;
+
+    this.$scope = $scope;
+
+    // Init the constructor
+    this._construtor = function()
+    {
+        new Panel( this );
+        this.initTable();
+
+        _this.parameters.__search = '';
+    }
+
+    this.rules = {}
+
+    this.actions = {
+        add: () => {
+            window.pAssetsResponsable.open( null,  _this.processList );
+        },
+    }
+
+    this.process = () => {
+
+        if( this.table != null )
+        {
+            this.table.$search.value = this.parameters.__search;
+            this.table.search();
+        }
+    }
+
+    // Add Responsable to database
+    this.processList = (responsable) => {
+
+        let data = _this.table.config.data;
+        for (let i = 0; i < data.length; i++) 
+        {
+            const f = data[i];
+            if( f.id == responsable.id )
+            {
+                data[i] = responsable;
+                _this.table.search();
+                return true;
+            }
+        }
+
+        _this.table.config.data.push(responsable);
+        _this.table.search();
+    }
+    
+    // Remove Responsable from database
+    this.removeList = (id) => {
+
+        let aux = [];
+        let data = _this.table.config.data;
+        for (let i = 0; i < data.length; i++) 
+        {
+            const f = data[i];
+            if( f.id != id )
+                aux.push(data[i]);
+        }
+
+        _this.table.config.data = aux;
+        _this.table.search();
+    }
+
+    // Initialize table
+    this.initTable = () => {
+
+        this.table = new SuperTable( document.querySelector('.table'),{
+            rowsPerPage: 10,
+            perPage: false,
+            search: false,
+            columns: {
+                name: window.tableLang.name,
+                email: window.tableLang.email,
+                contact: window.tableLang.contact,
+                departmentcompany: window.tableLang.departmentcompany,
+            },
+            data: __config.data,
+            process_value_required: (v) => {
+                if(v == true)
+                    return '<div class="text-center"><i class="fa-regular fa-square-check"></i></div>';
+                else
+                    return '<div class="text-center"><i class="fa-regular fa-square-xmark"></i></div>';
+            },
+            process_value_type: (v) => {
+                return `<div class="text-center">${v}</div>`;
+            },
+            actions:[
+                { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
+                    window.pAssetsResponsable.open( d,  _this.processList );
+                }},
+                { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
+                    window.WepulseModal( 'confirm', ( flag ) => {
+                        if( flag == true )
+                        {
+                            axios.delete( 'assets/responsable/'+d.id ).then( (response) => {
+                                _this.removeList(d.id);
+                            }).catch(() => {
+
+                            });
+                        }
+                    });
+                }},
+            ]
+        });
+    }
+
+    _this._construtor();
+}
+
+// Show user of the BO
+window.PanelAssetsResponsable = function( $scope )
+{
+    let _this = this;
+
+    this.$scope = $scope;
+
+    // Init the constructor
+    this._construtor = function()
+    {
+        new Panel( this );
+    }
+
+    // Rules
+    this.rules = {
+        load: (p) => { return p.__load == '1'  }
+    }
+
+    // Actions
+    this.actions = {
+        // Close panel
+        cancel: () => {
+            _this.close();
+        },
+        // Close panel
+        update: () => {
+            _this.ruleDisplay();
+        },
+        // Save responsable
+        save: (f) => {
+
+            // Send responsables responsable
+            if(f.validate())
+            {
+                let data = {
+                    name: _this.parameters.__name,
+                    email: _this.parameters.__email,
+                    contact: _this.parameters.__contact,
+                    departmentcompany: _this.parameters.__departmentcompany,
+                }
+
+                _this.parameters.__load = 1;
+                // Create
+                if( _this.id == '' )
+                {
+                    axios.post( 'assets/responsable', data ).then( (response) => {
+
+                        if( _this.successCallBack != undefined )
+                            _this.successCallBack( response.data );
+
+                        _this.parameters.__load = 0;
+                        _this.close();
+                    }).catch(() => {
+                        _this.parameters.__load = 0;
+                    });
+                }
+                // Edit
+                else
+                {
+                    axios.put( 'assets/responsable/'+_this.id, data ).then( (response) => {
+
+                        if( _this.successCallBack != undefined )
+                            _this.successCallBack( response.data );
+
+                        _this.parameters.__load = 0;
+                        _this.close();
+                    }).catch(() => {
+                        _this.parameters.__load = 0;
+                    });
+                }
+            }
+        },
+    }
+
+    // Open responsables
+    this.openDisplay = (d) => {
+
+        // Is new responsables
+        if( d == null )
+        {
+            _this.parameters.__name = '';
+            _this.parameters.__email = '';
+            _this.parameters.__contact = '';
+            _this.parameters.__company = '';
+            _this.id = '';
+        }
+        // Edit responsable mode
+        else
+        {
+            _this.parameters.__name = d.name;
+            _this.parameters.__email = d.email;
+            _this.parameters.__contact = d.contact;
+            _this.parameters.__company = d.company;
+            _this.id = d.id;
+        }
+
+        _this.ruleDisplay();
+    }
 
     _this._construtor();
 }

@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/fie
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/categories', 'App\Http\Controllers\Web\AssetsController@categories');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/events', 'App\Http\Controllers\Web\AssetsController@events');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/alerts', 'App\Http\Controllers\Web\AssetsController@alerts');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->get('/assets/responsables', 'App\Http\Controllers\Web\AssetsController@responsables');
 
 /**
  * Admin
@@ -41,6 +42,7 @@ Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/assets', 'App\Http\Controllers\Api\AssetController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/event', 'App\Http\Controllers\Api\EventController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/alert', 'App\Http\Controllers\Api\AlertController');
+Route::middleware(['auth:sanctum', AppSelectValidated::class])->resource('assets/responsable', 'App\Http\Controllers\Api\ResponsableController');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('assets/search/asset', 'App\Http\Controllers\Api\AssetController@index');
 Route::middleware(['auth:sanctum', AppSelectValidated::class])->post('assets/search/event', 'App\Http\Controllers\Api\EventController@index');
 
