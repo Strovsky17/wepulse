@@ -32,4 +32,5 @@ return [
     'category' => 'Categoria',
     'responsable' => 'Responsável',
     'responsables' => 'Responsáveis',
+    'event' => 'Evento',
 ];  

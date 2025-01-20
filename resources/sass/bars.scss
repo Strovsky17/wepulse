@@ -63,7 +63,7 @@
     .sidebar-menu {
 
         padding: 30px;
-        height: calc(100vh - 350px);
+        height: calc(100vh - 330px);
         overflow-y: auto;
         overflow-x: hidden;
 
@@ -116,6 +116,23 @@
             cursor: not-allowed;
         }
     }
+    
+        .sidebar-menu::-webkit-scrollbar {
+            width: 10px;
+
+          }
+          
+          .sidebar-menu::-webkit-scrollbar-track {
+            background: #F2F2F2;
+          }
+          
+          .sidebar-menu::-webkit-scrollbar-thumb {
+            background: #BDBDBD;
+          }
+          
+          .sidebar-menu::-webkit-scrollbar-thumb:hover {
+            background: #6E6E6E;
+          }
 
     & + .content {
         width: calc( 100vw - 363px );

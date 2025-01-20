@@ -43,5 +43,11 @@ return [
     'departmentcompanyPlaceholder' => 'Adicione um Departamento/Empresa',
     'emailPlaceholder' => 'Adicione um E-mail',
     'contactPlaceholder' => 'Adicione um contacto',
+    'who' => 'Quem',
+    'sortDescription' => 'Descrição',
+    'obs' => 'Observação',
+    'nextEvent' => 'Próximo Evento',
+    'guarantee' => 'Garantia',
+
 
 ]; 
