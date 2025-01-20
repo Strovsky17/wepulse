@@ -1080,7 +1080,7 @@ window.PanelAssetsTableAlert = function( $scope, __config )
         for (let i = 0; i < data.length; i++) 
         {
             const f = data[i];
-            if( f.id == category.id )
+            if( f.id == alert.id )
             {
                 data[i] = alert;
                 _this.table.search();
@@ -1133,13 +1133,13 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             },
             actions:[
                 { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
-                    window.pAssetsHistory.open( d,  _this.processList );
+                    window.pAssetsAlert.open( d,  _this.processList );
                 }},
                 { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
                     window.WepulseModal( 'confirm', ( flag ) => {
                         if( flag == true )
                         {
-                            axios.delete( 'assets/category/'+d.id ).then( (response) => {
+                            axios.delete( 'assets/alert/'+d.id ).then( (response) => {
                                 _this.removeList(d.id);
                             }).catch(() => {
 
@@ -1248,12 +1248,12 @@ window.PanelAssetsAlert = function( $scope )
         if(this.rules.needValues( f.parameters ))
         {
             if( _this.$scope.querySelector( '.alerts-values' ).children.length == 0 )
-                _this.addFieldValue();
+                _this.addAlertValue();
         }
     }
 
-    // Add New field value
-    this.addFieldValue = (v) => {
+    // Add New Alert value
+    this.addAlertValue = (v) => {
 
         if(v == undefined)
             v = '';
@@ -1269,7 +1269,7 @@ window.PanelAssetsAlert = function( $scope )
         f.appendChild(c);
     }
 
-    // Open field
+    // Open Alert
     this.openDisplay = (d) => {
 
         // allways remove values
@@ -1285,7 +1285,7 @@ window.PanelAssetsAlert = function( $scope )
 
             _this.id = '';
         }
-        // Edit field mode
+        // Edit Alert mode
         else
         {
             _this.parameters.__name = d.name;

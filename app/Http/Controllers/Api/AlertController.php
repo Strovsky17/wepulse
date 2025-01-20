@@ -38,7 +38,7 @@ class AlertController extends Controller
         if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
             return abort(401);
         
-        // Validated Historires
+        // Validated Alerts
         $validated = Validator::make($request->all(), [
             'name' => 'required'
         ])->validate();
