@@ -21,28 +21,10 @@
             </div>
 
             <div class='menu-link'>
-                <a href='javascript:void(0)' action='open' class='{{ $page == "assets" ? "active" : "" }}' >
+                <a href='javascript:void(0)' action='open' class='{{ $page == "assets" ? "active open" : "" }}' >
                     <i class="fa-solid fa-server"></i> {{ __('menu.assets') }}
                 </a>
                 <div>
-                    <!--<a href='/ativos/ativos' class='{{ $subpage == "ativos" ? "active" : "" }}' >
-                        {{ __('menu.ativos') }}
-                    </a>
-                    <a href='/ativos/register' class='{{ $subpage == "register" ? "active" : "" }}' >
-                        {{ __('menu.register') }}
-                    </a>
-                    <a href='/ativos/alerts' class='{{ $subpage == "alerts" ? "active" : "" }}' >
-                        {{ __('menu.createalerts') }}
-                    </a>
-                    <a href='/ativos/inventory' class='{{ $subpage == "inventory" ? "active" : "" }}' >
-                        {{ __('menu.inventory') }}
-                    </a>
-                    <a href='/ativos/history' class='{{ $subpage == "history" ? "active" : "" }}' >
-                        {{ __('menu.history') }}
-                    </a>
-                    <a href='/ativos/edit' class='{{ $subpage == "edit" ? "active" : "" }}' >
-                        {{ __('menu.edit') }}
-                    </a>-->
                     <a href='/assets/asset' class='{{ $subpage == "register" ? "active" : "" }}' >
                         {{ __('menu.register') }}
                     </a>

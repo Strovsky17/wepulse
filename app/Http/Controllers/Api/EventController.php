@@ -36,7 +36,9 @@ class EventController extends Controller
                 $q->orWhere('obs', 'LIKE', "%$s%" );
 
                 if( empty($a) )
-                    $q->orWhere( DB::raw(" asset_id in ( SELECT id FROM assets WHERE name LIKE '%$s%'  )"));
+                {
+                    $q->orWhereRaw( DB::raw(" asset_id in ( SELECT id FROM assets WHERE name LIKE '%$s%'  )", ''));
+                }
 
             });
         }
@@ -112,6 +114,9 @@ class EventController extends Controller
 
         $Event = Event::find($id);
 
+        if( isset($request->asset_id) )
+            $Event->asset_id = $request->asset_id;
+        
         if( isset($request->who) )
             $Event->who = $request->who;
         
@@ -131,6 +136,7 @@ class EventController extends Controller
             $Event->who = $request->guatantee;
 
         $Event->save();
+        $Event->asset;
 
         return $Event;
     }

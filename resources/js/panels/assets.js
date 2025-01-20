@@ -847,21 +847,21 @@ window.PanelAssetsTableEvents = function( $scope, __config )
     }
 
     // Add History to database
-    this.processList = (history) => {
+    this.processList = (event) => {
 
         let data = _this.table.config.data;
         for (let i = 0; i < data.length; i++) 
         {
             const f = data[i];
-            if( f.id == category.id )
+            if( f.id == event.id )
             {
-                data[i] = history;
+                data[i] = event;
                 _this.table.search();
                 return true;
             }
         }
 
-        _this.table.config.data.push(history);
+        _this.table.config.data.push(event);
         _this.table.search();
     }
     
@@ -943,7 +943,8 @@ window.PanelAssetsEvent = function( $scope )
 
                         _this.parameters.__load = 0;
                         _this.close();
-                    }).catch(() => {
+                    }).catch((err) => {
+                        console.log(err)
                         _this.parameters.__load = 0;
                     });
                 }
@@ -957,7 +958,8 @@ window.PanelAssetsEvent = function( $scope )
 
                         _this.parameters.__load = 0;
                         _this.close();
-                    }).catch(() => {
+                    }).catch((err) => {
+                        console.log(err)
                         _this.parameters.__load = 0;
                     });
                 }
