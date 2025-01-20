@@ -44,8 +44,10 @@ return [
     'emailPlaceholder' => 'Adicione um E-mail',
     'contactPlaceholder' => 'Adicione um contacto',
     'who' => 'Quem',
+    'sortDescription' => 'Descrição',
     'obs' => 'Observação',
-    'nextEvent' => 'Proximo Evento',
+    'nextEvent' => 'Próximo Evento',
     'guarantee' => 'Garantia',
+
 
 ]; 

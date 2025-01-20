@@ -156,7 +156,7 @@
                         <div value=''>Nenhum</div>
                         <div value='1'>Baixo</div>
                         <div value='2'>Moderado</div>
-                        <div value='3'>Alta</div>
+                        <div value='3'>Alto</div>
                     </div>
                 </div>
             </div>

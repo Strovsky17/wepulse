@@ -6,7 +6,7 @@
 
     <div class='form'>
         
-        <div class='row'>
+        <div class='form-row'>
 
             <!-- Asset -->
             <div class='form-group col-md-12' rule='asset'>

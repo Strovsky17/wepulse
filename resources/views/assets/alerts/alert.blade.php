@@ -1,4 +1,4 @@
-<div class='panel-side panel-assets-field'>
+<div class='panel-side panel-assets-alert'>
 
     <div class='panel-header'>
         <h4>{!!__("menu.createAlert")!!}</h4>
