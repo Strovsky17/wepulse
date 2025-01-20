@@ -757,11 +757,11 @@ window.PanelAssetsTableEvents = function( $scope, __config )
 
         let requestParameters = {};
         let columns = {
-            asset: window.tableLang.asset,
             date: window.tableLang.date,
+            asset: window.tableLang.asset,
             who: window.tableLang.who,
-            description: window.tableLang.sortDescription,
-            next: window.tableLang.nextAction,
+            description: window.tableLang.description,
+            next_event: window.tableLang.nextAction,
         };
 
         if( __config.asset_mode == 1 )
@@ -786,15 +786,19 @@ window.PanelAssetsTableEvents = function( $scope, __config )
             search: false,
             requestParameters: requestParameters,
             columns: columns,
+            process_value_asset:(a) => {
+                return a ? a.name : '-';
+            },
             actions:[
                 { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
-                    window.pAssetsHistory.open( d,  _this.processList );
+                    window.pAssetsEvent.setAsset( _this.asset );
+                    window.pAssetsEvent.open( d,  _this.processList );
                 }},
                 { 'cls':'primary', 'icon':'thin fa-trash-can', label: '', callback: (d) => {
                     window.WepulseModal( 'confirm', ( flag ) => {
                         if( flag == true )
                         {
-                            axios.delete( 'assets/category/'+d.id ).then( (response) => {
+                            axios.delete( 'assets/event/'+d.id ).then( (response) => {
                                 _this.removeList(d.id);
                             }).catch(() => {
 
@@ -918,7 +922,13 @@ window.PanelAssetsEvent = function( $scope )
             if(f.validate())
             {
                 let data = {
-                    name: _this.parameters.__name,
+                    asset_id: _this.parameters.__asset_id,
+                    date: _this.parameters.__date,
+                    who: _this.parameters.__who,
+                    description: _this.parameters.__description,
+                    obs: _this.parameters.__obs,
+                    next: _this.parameters.__next,
+                    guarantee: _this.parameters.__guarantee,
                 }
 
                 _this.parameters.__load = 1;
@@ -926,7 +936,7 @@ window.PanelAssetsEvent = function( $scope )
                 // Create
                 if( _this.id == '' )
                 {
-                    axios.post( 'assets/history', data ).then( (response) => {
+                    axios.post( 'assets/event', data ).then( (response) => {
 
                         if( _this.successCallBack != undefined )
                             _this.successCallBack( response.data );
@@ -940,7 +950,7 @@ window.PanelAssetsEvent = function( $scope )
                 // Edit
                 else
                 {
-                    axios.put( 'assets/history/'+_this.id, data ).then( (response) => {
+                    axios.put( 'assets/event/'+_this.id, data ).then( (response) => {
 
                         if( _this.successCallBack != undefined )
                             _this.successCallBack( response.data );
@@ -976,11 +986,9 @@ window.PanelAssetsEvent = function( $scope )
             axios.post( 'assets/search/asset', { all: true, simple: true } ).then( (response) => {
                 _this.createAssets( response.data );
 
-                _this.parameters.__asset_id = '';
+                _this.parameters.__asset_id = _this.d != null ? _this.d.asset_id : '';
                 _this.parameters.__load = 0;
             }).catch((r) => {
-    
-                console.log(r);
                 _this.parameters.__load = 0;
             });
         }
@@ -996,16 +1004,31 @@ window.PanelAssetsEvent = function( $scope )
     // Open field
     this.openDisplay = (d) => {
 
+        _this.d = d;
+
         // Is new fiels
         if( d == null )
         {
-            _this.parameters.__name = '';
+            _this.parameters.__asset_id = '';
+            _this.parameters.__date = '';
+            _this.parameters.__who = '';
+            _this.parameters.__description = '';
+            _this.parameters.__obs = '';
+            _this.parameters.__next = '';
+            _this.parameters.__guatantee = '';
             _this.id = '';
         }
         // Edit field mode
         else
         {
-            _this.parameters.__name = d.name;
+            _this.parameters.__asset_id = d.asset_id;
+            _this.parameters.__date = d.date;
+            _this.parameters.__who = d.who;
+            _this.parameters.__description = d.description;
+            _this.parameters.__obs = d.obs;
+            _this.parameters.__next = d.next_event;
+            _this.parameters.__guatantee = d.guatantee;
+
             _this.id = d.id;
         }
 

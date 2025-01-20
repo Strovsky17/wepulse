@@ -37,7 +37,7 @@
             
             <!-- description -->
             <div class='form-group col-md-12'>
-                <label>{!! __('form.sortDescription') !!}</label>
+                <label>{!! __('form.description') !!}</label>
                 <input type="text" class="form-control" name='description' required />
             </div>
             

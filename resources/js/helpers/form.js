@@ -189,7 +189,6 @@ window.PForm = function( $scope, config )
                         if( to != null  && $el.parentNode.querySelector(to))
                             $el.parentNode.querySelector(to).innerHTML = v;
     
-    
                         if($el.value == v)
                             return true;
     

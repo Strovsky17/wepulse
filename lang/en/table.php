@@ -30,4 +30,7 @@ return [
     'deleteBody' => 'Tem certeza que pertende eliminar este registo ? Este processo não pode ser revertido.',
     'departmentcompany' => 'Departamento/Empresa',
     'contact' => 'Contacto',
+    'who' => 'Por quem',
+    'description' => 'Descrição',
+    'nextAction' => 'Proxima ação',
 ]; 

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use DB;
+
 class EventController extends Controller
 {
     /**
@@ -17,7 +19,29 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        return Event::paginate(15);
+        $query = Event::orderBy('date', 'desc');
+
+        if( !empty( $request->asset_id ) )
+            $query = $query->where('asset_id', $request->asset_id);
+
+        if( !empty($request->search) )
+        {
+            $s = $request->search;
+            $a = $request->asset_id;
+
+            $query = $query->where( function ($q) use ($s, $a) {
+
+                $q->where('who', 'LIKE', "%$s%" );
+                $q->orWhere('description', 'LIKE', "%$s%" );
+                $q->orWhere('obs', 'LIKE', "%$s%" );
+
+                if( empty($a) )
+                    $q->orWhere( DB::raw(" asset_id in ( SELECT id FROM assets WHERE name LIKE '%$s%'  )"));
+
+            });
+        }
+
+        return $query->paginate(15);
     }
 
     /**
@@ -40,15 +64,24 @@ class EventController extends Controller
         
         // Validated Historires
         $validated = Validator::make($request->all(), [
-            'name' => 'required'
+            'asset_id' => 'required',
+            'date' => 'required',
+            'who' => 'required',
+            'description' => 'required',
         ])->validate();
 
         // Create client
-        $History = History::create([
-            'name' => $request->name
+        $Event = Event::create([
+            'who' => $request->who,
+            'date' => $request->date,
+            'description' => $request->description,
+            'asset_id' => $request->asset_id,
+            'obs' => $request->obs ?? '',
+            'next_event' => $request->next,
+            'guatantee' => $request->guatantee,
         ]);
 
-        return $History;
+        return $Event;
     }
 
     /**
@@ -77,14 +110,29 @@ class EventController extends Controller
         if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
             return abort(401);
 
-        $History = History::find($id);
+        $Event = Event::find($id);
 
-        if( isset($request->name) )
-            $History->name = $request->name;
+        if( isset($request->who) )
+            $Event->who = $request->who;
+        
+        if( isset($request->date) )
+            $Event->date = $request->date;
+        
+        if( isset($request->description) )
+            $Event->description = $request->description;
+        
+        if( isset($request->obs) )
+            $Event->obs = $request->obs;
+        
+        if( isset($request->next) )
+            $Event->next_event = $request->next;
+        
+        if( isset($request->guatantee) )
+            $Event->who = $request->guatantee;
 
-        $History->save();
+        $Event->save();
 
-        return $History;
+        return $Event;
     }
 
     /**
@@ -92,6 +140,6 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        History::find($id)->delete();
+        Event::find($id)->delete();
     }
 }

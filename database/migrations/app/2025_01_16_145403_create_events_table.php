@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('asset_id');
             $table->timestamp('date')->nullable();
-            $table->string('name', 99);
+            $table->string('who', 99);
             $table->string('description', 99);
             $table->text('obs');
             $table->timestamp('next_event')->nullable();

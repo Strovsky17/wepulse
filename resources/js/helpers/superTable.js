@@ -537,13 +537,12 @@ window.SuperTable = function( $scope, config )
             else
             {
                 // Get the information from template
-                axios.post(_this.config.paginationUrl, {'page':page, 'per_page': _this.$select.value, 'search': _this.$search.value }).then((response) => 
+                axios.post(_this.config.paginationUrl, {'page':page, 'per_page': _this.$select.value, 'search': _this.$search.value, ...config.requestParameters  }).then((response) => 
                 {
                     _this.total = response.data.total;
                     _this.dataPage[ page ] = response.data.data;
                     _this.buildBody();
 
-                    console.log(_this.flashCallback);
                     if( _this.flashCallback != undefined )
                     {
                         _this.flashCallback( response.data );
