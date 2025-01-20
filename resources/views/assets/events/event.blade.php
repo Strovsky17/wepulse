@@ -35,13 +35,13 @@
                 <input type="text" class="form-control" name='who' placeholder='' required />
             </div>
             
-            <!-- description -->
+            <!-- Description -->
             <div class='form-group col-md-12'>
                 <label>{!! __('form.description') !!}</label>
                 <input type="text" class="form-control" name='description' required />
             </div>
             
-            <!-- description -->
+            <!-- Obs -->
             <div class='form-group col-md-12'>
                 <label>{!! __('form.obs') !!}</label>
                 <textarea class="form-control" name='obs'> </textarea>

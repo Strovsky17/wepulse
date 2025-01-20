@@ -1,6 +1,6 @@
 @extends('page')
 @extends('misc.sidebar', [ "page" => "assets", "subpage" => "fields" ])
-@extends('misc.topbar', ["title" => __('menu.events')])
+@extends('misc.topbar', ["title" => __('menu.assets')])
 
 @section('content')
     @include('assets/fields/list')

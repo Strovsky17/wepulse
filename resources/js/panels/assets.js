@@ -1038,20 +1038,6 @@ window.PanelAssetsEvent = function( $scope )
     _this._construtor();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Show user of the BO
 window.PanelAssetsTableAlert = function( $scope, __config )
 {
@@ -1068,8 +1054,10 @@ window.PanelAssetsTableAlert = function( $scope, __config )
         _this.parameters.__search = '';
     }
 
-    this.rules = {}
-
+    this.rules = {
+        mode: () => { return __config.asset_mode }
+    }
+    
     this.actions = {
         add: () => {
             window.pAssetsAlert.open( null,  _this.processList );
@@ -1128,9 +1116,9 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             perPage: false,
             search: false,
             columns: {
-                type: window.tableLang.type,
                 asset: window.tableLang.asset,
-                category: window.tableLang.category,
+                description: window.tableLang.description,
+                status: window.tableLang.status,
                 date: window.tableLang.date,
             },
             data: __config.data,
@@ -1320,7 +1308,6 @@ window.PanelAssetsAlert = function( $scope )
 
     _this._construtor();
 }
-
 
 // Show user of the BO
 window.PanelAssetsTableResponsable = function( $scope, __config )

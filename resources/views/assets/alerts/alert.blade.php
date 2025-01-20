@@ -8,38 +8,37 @@
         
         <div class='row'>
 
-            <!-- AlertType -->
-            <div class='form-group col-md-12'>
-            <label>{!! __('form.alertType') !!}</label>
-                <div WepulseDrop name='alert' action='update'>
+            <!-- Asset -->
+            <div class='form-group col-md-12' >
+                <label>{!! __('form.asset') !!}</label>
+                <input type='hidden' name='asset' value='1' />
+                <div WepulseDrop name='asset_id' action='update'>
                     <div>
-                        <span></span>
+                        <input value/>
                         <i class="fa-solid fa-caret-down"></i>
                     </div>
                     <div>
-                        <div value='input'>{!! __('form.input') !!}</div>
+                        <div value=''></div>
                     </div>
                 </div>
             </div>
             
-            <!-- Asset -->
+            <!-- Description -->
             <div class='form-group col-md-12'>
-            <label>{!! __('form.asset') !!}</label>
-                <div WepulseDrop name='asset' action='update'>
-                    <div>
-                        <span></span>
-                        <i class="fa-solid fa-caret-down"></i>
-                    </div>
-                    <div>
-                        <div value='input'>{!! __('form.input') !!}</div>
-                    </div>
-                </div>
+                <label>{!! __('form.description') !!}</label>
+                <input type="text" class="form-control" name='description' required />
             </div>
-                    
-            <!-- Category -->
+                   
+            <!-- Obs -->
             <div class='form-group col-md-12'>
-                <label>{!! __('form.category') !!}</label>
-                <div WepulseDrop name='category' action='update'>
+                <label>{!! __('form.obs') !!}</label>
+                <textarea class="form-control" name='obs'> </textarea>
+            </div>
+
+            <!-- Status -->
+            <div class='form-group col-md-12'>
+                <label>{!! __('form.status') !!}</label>
+                <div WepulseDrop name='status' action='update'>
                     <div>
                         <span></span>
                         <i class="fa-solid fa-caret-down"></i>

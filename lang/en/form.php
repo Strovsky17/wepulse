@@ -48,6 +48,7 @@ return [
     'obs' => 'Observação',
     'nextEvent' => 'Próximo Evento',
     'guarantee' => 'Garantia',
+    'status' => 'Estado',
 
 
 ]; 

@@ -1,6 +1,6 @@
 @extends('page')
 @extends('misc.sidebar', [ "page" => "assets", "subpage" => "responsables" ])
-@extends('misc.topbar', ["title" => __('menu.responsables')])
+@extends('misc.topbar', ["title" => __('menu.assets')])
 
 @section('content')
     @include('assets/responsables/list')

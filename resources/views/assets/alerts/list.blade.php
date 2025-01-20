@@ -1,7 +1,7 @@
 <div class='panel form row panel-assets-table-alert'>
 
     <div class='panel-header'>
-        <h2>{!!__("menu.allAlerts")!!}</h2>
+        <h2>{!!__("menu.alerts")!!}</h2>
 
 
 

@@ -33,4 +33,5 @@ return [
     'who' => 'Por quem',
     'description' => 'Descrição',
     'nextAction' => 'Proxima ação',
+    'status' => 'Estado',
 ]; 
