@@ -1,12 +1,16 @@
 <div class='panel form row panel-profile-info'>
-    <div class="form row">
-        <div class='panel-header'>
-            <h2>{!!__("profile.userInfo")!!}</h2>
 
-            <button class='btn btn-primary' rule='save' action='save'>{{ __("form.save") }}</button>
-            <button class='btn btn-secondary' rule='edit' action='edit'>{{ __("form.edit") }}</button>
-        </div>
-        
+    <div class='panel-header'>
+        <h2>{!!__("profile.userInfo")!!}</h2>
+    </div>
+
+    <div class='form'>
+    <div class='form-header'> 
+        <button class='btn btn-primary' rule='save' action='save'>{{ __("form.save") }}</button>
+        <button class='btn btn-secondary' rule='edit' action='edit'>{{ __("form.edit") }}</button>
+
+    </div>
+    </div>
         <div class='form-group col-md-8'>
             <label>{!! __('profile.name') !!}</label>
             <span rule='edit'>{{ !empty($profile['name']) ? $profile['name'] : '' }}</span>
@@ -48,7 +52,7 @@
             <span rule='edit'>{{ !empty($profile['email']) ? $profile['email'] : '' }}</span> 
             <input type="text" class="form-control" name='email' placeholder='suport@securenet.pt' required rule='save' to='span' value="{{ !empty($profile['email']) ? $profile['email'] : '' }}"/>
         </div>
-    </div>
+
 
     <input type='hidden' name='edit' value='0' />
     <script>
