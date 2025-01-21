@@ -10,14 +10,39 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use DB;
+
 class AlertController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Alert::orderBy('date', 'desc');
+
+        if( !empty( $request->asset_id ) )
+            $query = $query->where('asset_id', $request->asset_id);
+
+        if( !empty($request->search) )
+        {
+            $s = $request->search;
+            $a = $request->asset_id;
+
+            $query = $query->where( function ($q) use ($s, $a) {
+
+                $q->orWhere('description', 'LIKE', "%$s%" );
+                $q->orWhere('obs', 'LIKE', "%$s%" );
+
+                if( empty($a) )
+                {
+                    $q->orWhereRaw( DB::raw(" asset_id in ( SELECT id FROM assets WHERE name LIKE '%$s%'  )", ''));
+                }
+
+            });
+        }
+
+        return $query->paginate(15);
     }
 
     /**
@@ -38,14 +63,21 @@ class AlertController extends Controller
         if( $user && ( $user->role == 'superadmin' || $user->roleClient == 'admin' )  ) {} else
             return abort(401);
         
-        // Validated Alerts
+        // Validated Historires
         $validated = Validator::make($request->all(), [
-            'name' => 'required'
+            'asset_id' => 'required',
+            'date' => 'required',
+            'status' => 'required',
+            'description' => 'required',
         ])->validate();
 
         // Create client
         $Alert = Alert::create([
-            'name' => $request->name
+            'status' => $request->status,
+            'date' => $request->date,
+            'description' => $request->description,
+            'asset_id' => $request->asset_id,
+            'obs' => $request->obs ?? ''
         ]);
 
         return $Alert;
@@ -79,10 +111,23 @@ class AlertController extends Controller
 
         $Alert = Alert::find($id);
 
-        if( isset($request->name) )
-            $Alert->name = $request->name;
+        if( isset($request->asset_id) )
+            $Alert->asset_id = $request->asset_id;
+        
+        if( isset($request->status) )
+            $Alert->status = $request->status;
+        
+        if( isset($request->date) )
+            $Alert->date = $request->date;
+        
+        if( isset($request->description) )
+            $Alert->description = $request->description;
+        
+        if( isset($request->obs) )
+            $Alert->obs = $request->obs;
 
         $Alert->save();
+        $Alert->asset;
 
         return $Alert;
     }

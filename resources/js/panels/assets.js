@@ -1062,6 +1062,7 @@ window.PanelAssetsTableAlert = function( $scope, __config )
     
     this.actions = {
         add: () => {
+            window.pAssetsAlert.setAsset();
             window.pAssetsAlert.open( null,  _this.processList );
         },
     }
@@ -1113,25 +1114,39 @@ window.PanelAssetsTableAlert = function( $scope, __config )
     // Initialize table
     this.initTable = () => {
 
+        let requestParameters = {};
+        let columns = {
+            date: window.tableLang.date,
+            asset: window.tableLang.asset,
+            description: window.tableLang.description,
+            status: window.tableLang.status
+        };
+
+        if( __config.asset_mode == 1 )
+        {
+            _this.asset = window.pAsset.getAsset();
+
+            delete columns.asset;             
+            requestParameters = { 'asset_id': _this.asset.id ?? 0 }
+
+            if( _this.asset.id != null )
+                _this.show();
+        }
+        else
+        {
+            _this.show();
+        }
+
+
         this.table = new SuperTable( document.querySelector('.table'),{
+            paginationUrl: 'assets/search/alert',
             rowsPerPage: 10,
             perPage: false,
             search: false,
-            columns: {
-                asset: window.tableLang.asset,
-                description: window.tableLang.description,
-                status: window.tableLang.status,
-                date: window.tableLang.date,
-            },
-            data: __config.data,
-            process_value_required: (v) => {
-                if(v == true)
-                    return '<div class="text-center"><i class="fa-regular fa-square-check"></i></div>';
-                else
-                    return '<div class="text-center"><i class="fa-regular fa-square-xmark"></i></div>';
-            },
-            process_value_type: (v) => {
-                return `<div class="text-center">${v}</div>`;
+            requestParameters: requestParameters,
+            columns: columns,
+            process_value_asset:(a) => {
+                return a ? a.name : '-';
             },
             actions:[
                 { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 
@@ -1167,26 +1182,18 @@ window.PanelAssetsAlert = function( $scope )
     this._construtor = function()
     {
         new Panel( this );
+
+        _this.parameters.__asset = 1;
     }
 
     // Rules
     this.rules = {
-        needValues: (p) => { return p.__type == 'checkbox' || p.__type == 'radiobutton' || p.__type == 'dropdown'  },
-        load: (p) => { return p.__load == '1'  }
+        load: (p) => { return p.__load == '1'  },
+        asset: (p) => { return p.__asset == '1'  },
     }
 
     // Actions
     this.actions = {
-        // Add Alert Value
-        add: () => {
-            _this.addAlertValue();
-        },
-        // Remove Alert Value
-        remove: (f, $el) => {
-
-            $el.parentNode.remove();
-            _this.ruleDisplay();
-        },
         // Close panel
         cancel: () => {
             _this.close();
@@ -1195,22 +1202,21 @@ window.PanelAssetsAlert = function( $scope )
         update: () => {
             _this.ruleDisplay();
         },
-        // Save alert
+        // Save field
         save: (f) => {
 
-            // Send assets alert
+            // Send assets field
             if(f.validate())
             {
                 let data = {
-                    name: _this.parameters.__name,
-                    type: _this.parameters.__type,
+                    asset_id: _this.parameters.__asset_id,
+                    date: _this.parameters.__date,
+                    status: _this.parameters.__status,
                     description: _this.parameters.__description,
-                    required: _this.parameters.__required,
-                    data: _this.parameters.__values,
+                    obs: _this.parameters.__obs
                 }
 
                 _this.parameters.__load = 1;
-
 
                 // Create
                 if( _this.id == '' )
@@ -1222,7 +1228,8 @@ window.PanelAssetsAlert = function( $scope )
 
                         _this.parameters.__load = 0;
                         _this.close();
-                    }).catch(() => {
+                    }).catch((err) => {
+                        console.log(err)
                         _this.parameters.__load = 0;
                     });
                 }
@@ -1236,7 +1243,8 @@ window.PanelAssetsAlert = function( $scope )
 
                         _this.parameters.__load = 0;
                         _this.close();
-                    }).catch(() => {
+                    }).catch((err) => {
+                        console.log(err)
                         _this.parameters.__load = 0;
                     });
                 }
@@ -1244,62 +1252,65 @@ window.PanelAssetsAlert = function( $scope )
         },
     }
 
-    // Process form
-    this.process = (f) => {
+    // Create Assets
+    this.createAssets = (assets) => {
 
-        if(this.rules.needValues( f.parameters ))
+        let options = $scope.querySelector('[name="asset_id"] > div:nth-child(2)');
+        options.innerHTML = '<div value=""></div>';
+
+        for (let i = 0; i < assets.length; i++)
+            options.innerHTML += `<div value="${assets[i].id}">${assets[i].name}</div>`;
+    }
+
+    // Set Assets
+    this.setAsset = ( asset ) => {
+
+        if(asset == null)
         {
-            if( _this.$scope.querySelector( '.alerts-values' ).children.length == 0 )
-                _this.addAlertValue();
+            _this.parameters.__asset = 1;
+            _this.parameters.__load = 1;
+
+            axios.post( 'assets/search/asset', { all: true, simple: true } ).then( (response) => {
+                _this.createAssets( response.data );
+
+                _this.parameters.__asset_id = _this.d != null ? _this.d.asset_id : '';
+                _this.parameters.__load = 0;
+            }).catch((r) => {
+                _this.parameters.__load = 0;
+            });
+        }
+        else
+        {
+            _this.createAssets( [asset] );
+
+            _this.parameters.__asset_id = asset.id;
+            _this.parameters.__asset = 0;
         }
     }
 
-    // Add New Alert value
-    this.addAlertValue = (v) => {
-
-        if(v == undefined)
-            v = '';
-
-        let f = _this.$scope.querySelector( '.alerts-values' );
-        let c = components.createDiv('form-input-action mb-2');
-
-        c.innerHTML = `
-        <input type="text" class="form-control" name='values[]' required value="${v}" />
-        <i class='fa-thin fa-trash-can' actionRun='remove'></i>
-        `;
-
-        f.appendChild(c);
-    }
-
-    // Open Alert
+    // Open field
     this.openDisplay = (d) => {
 
-        // allways remove values
-        _this.$scope.querySelector( '.alerts-values' ).innerHTML = '';
+        _this.d = d;
 
         // Is new fiels
         if( d == null )
         {
-            _this.parameters.__name = '';
+            _this.parameters.__asset_id = '';
+            _this.parameters.__date = '';
+            _this.parameters.__status = '';
             _this.parameters.__description = '';
-            _this.parameters.__type = 'input';
-            _this.parameters.__required = 1;
-
+            _this.parameters.__obs = '';
             _this.id = '';
         }
-        // Edit Alert mode
+        // Edit field mode
         else
         {
-            _this.parameters.__name = d.name;
+            _this.parameters.__asset_id = d.asset_id;
+            _this.parameters.__date = d.date;
+            _this.parameters.__status = d.status;
             _this.parameters.__description = d.description;
-            _this.parameters.__type = d.type;
-            _this.parameters.__required = d.required;
-
-            for (let i = 0; i < d.data.length; i++)
-            {
-                if( d.data[i] != null && d.data[i] != '' )
-                    _this.addAlertValue(d.data[i]);
-            }
+            _this.parameters.__obs = d.obs;
 
             _this.id = d.id;
         }
@@ -1307,9 +1318,23 @@ window.PanelAssetsAlert = function( $scope )
         _this.ruleDisplay();
     }
 
-
     _this._construtor();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Show user of the BO
 window.PanelAssetsTableResponsable = function( $scope, __config )

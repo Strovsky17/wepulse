@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Alert extends Model
 {
@@ -16,11 +17,11 @@ class Alert extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'name',
-        'type',
+        'asset_id',
+        'date',
+        'status',
         'description',
-        'data',
-        'required',
+        'obs'
     ];
 
     /***
@@ -30,4 +31,14 @@ class Alert extends Model
         'data' => 'array',
         'required' => 'boolean',
     ];
+
+    protected $with = ['asset'];
+
+    /**
+     * Asset
+     */
+    public function asset(): HasOne
+    { 
+        return $this->hasOne(Asset::class, 'id', 'asset_id');
+    }
 }

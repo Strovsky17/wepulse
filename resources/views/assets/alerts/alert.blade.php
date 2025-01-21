@@ -44,7 +44,7 @@
                         <i class="fa-solid fa-caret-down"></i>
                     </div>
                     <div>
-                        <div value='input'>{!! __('form.input') !!}</div>
+                        <div value='0'>{!! __('form.input') !!}</div>
                     </div>
                 </div>
             </div>
