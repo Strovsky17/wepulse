@@ -1065,6 +1065,20 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             window.pAssetsAlert.setAsset();
             window.pAssetsAlert.open( null,  _this.processList );
         },
+        changeShowHide: (f , $el) => {
+            if(f.__id != '')
+                $el.classList.toggle('show');
+            else
+                $el.classList.add('show');
+        }
+    }
+
+     // Set Asset
+    this.setAsset = (asset) => {
+    
+        _this.asset = asset;
+        _this.table.config.requestParameters = { 'asset_id': _this.asset.id ?? 0 };
+        _this.show();
     }
 
     this.process = () => {
@@ -1147,6 +1161,15 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             columns: columns,
             process_value_asset:(a) => {
                 return a ? a.name : '-';
+            },
+            data: __config.data,
+            process_value_status: (v) => {
+                if( v == 1 )
+                    return `<div class="text-center text-danger">Pendente</div>`;
+                else if( v == 2 )
+                    return `<div class="text-center text-warning">Em Andamento</div>`;
+                else if( v == 3 )
+                    return `<div class="text-center text-success">Finalizado</div>`;
             },
             actions:[
                 { 'cls':'primary', 'icon':'thin fa-pen-to-square', label: '', callback: (d) => { 

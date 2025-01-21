@@ -2,7 +2,7 @@
 
     <div class='panel-header'>
         <h2>{!!__("menu.category")!!}</h2>
-    </div>~
+    </div>
 
     <div class='form'>
     <div class='form-header'>

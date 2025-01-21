@@ -6,4 +6,6 @@
     @include('assets/assets/asset')
     @include('assets/events/list')
     @include('assets/events/event')
+    @include('assets/alerts/list')
+    @include('assets/alerts/alert')
 @endsection

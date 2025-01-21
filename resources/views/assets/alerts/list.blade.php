@@ -1,7 +1,8 @@
-<div class='panel form row panel-assets-table-alert'>
+<div class='panel form row panel-assets-table-alert d-none'>
 
-    <div class='panel-header'>  
+    <div class='panel-header {{ !isset($asset) ? "show" : "" }}' action='changeShowHide'>  
         <h2>{!!__("menu.alerts")!!}</h2>
+        <i class="fa-sharp-duotone fa-regular fa-chevron-down" rule='mode'></i>
     </div>
 
     <div class='form'>
@@ -20,8 +21,8 @@
     
     <script>
         window.addEventListener('load', () => {
-            new PanelAssetsTableAlert( document.querySelector('.panel-assets-table-alert'), {
-                data: {!! json_encode($alerts) !!}
+            window.pAssetTableAlert = new PanelAssetsTableAlert( document.querySelector('.panel-assets-table-alert'), {
+                asset_mode: {{ isset($asset) ? 1 : 0 }}
             });
         })
     </script>

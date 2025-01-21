@@ -38,13 +38,15 @@
             <!-- Status -->
             <div class='form-group col-md-12'>
                 <label>{!! __('form.status') !!}</label>
-                <div WepulseDrop name='status' action='update'>
+                <div WepulseDrop name='status' action='update' required>
                     <div>
                         <span></span>
                         <i class="fa-solid fa-caret-down"></i>
                     </div>
                     <div>
-                        <div value='0'>{!! __('form.input') !!}</div>
+                        <div value='1'>Pendente</div>
+                        <div value='2'>Em Andamento</div>
+                        <div value='3'>Finalizado</div>
                     </div>
                 </div>
             </div>
