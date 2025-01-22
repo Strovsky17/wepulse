@@ -31,8 +31,9 @@ class AssetsController extends Controller
     {
         $assets = Asset::all();
         $categories = Category::all();
+        $responsables = Responsable::all();
 
-        return view( 'assets.assets.list', [ 'assets' => $assets, 'categories' => $categories ]);
+        return view( 'assets.assets.list', [ 'assets' => $assets, 'categories' => $categories, 'responsables' => $responsables ]);
     }
     
     /**
@@ -42,8 +43,9 @@ class AssetsController extends Controller
     {
         $fields = Field::all();
         $categories = Category::orderBy('name')->get();
+        $responsables = Responsable::orderBy('name')->get();
 
-        return view( 'assets.assets.view', [ 'asset' => [], 'categories' => $categories, 'fields' => $fields ]  );
+        return view( 'assets.assets.view', [ 'asset' => [], 'categories' => $categories, 'responsables' => $responsables, 'fields' => $fields ]  );
     }
 
      /**
@@ -54,8 +56,9 @@ class AssetsController extends Controller
         $asset = Asset::find($id);
         $fields = Field::all();
         $categories = Category::orderBy('name')->get();
+        $responsables = Responsable::orderBy('name')->get();
 
-        return view( 'assets.assets.view', [ 'asset' => $asset, 'categories' => $categories, 'fields' => $fields ] );
+        return view( 'assets.assets.view', [ 'asset' => $asset, 'categories' => $categories, 'responsables' => $responsables, 'fields' => $fields ] );
     }
 
     /**
@@ -88,10 +91,14 @@ class AssetsController extends Controller
         return view( 'assets.alerts.view', ['alerts' => $alerts] );
     }
 
+        /**
+     * Create a new Responsable
+     */
     function responsables()
     {
-        //$responsables = Responsable::all();
+        //$responsables = Responsable::orderBy('name')->get();
         $responsables = [];
+        
         return view( 'assets.responsables.view', ['responsables' => $responsables] );
     }
 }
