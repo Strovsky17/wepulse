@@ -96,9 +96,8 @@ class AssetsController extends Controller
      */
     function responsables()
     {
-        //$responsables = Responsable::orderBy('name')->get();
-        $responsables = [];
-        
+        $responsables = Responsable::orderBy('name')->get();
+
         return view( 'assets.responsables.view', ['responsables' => $responsables] );
     }
 }

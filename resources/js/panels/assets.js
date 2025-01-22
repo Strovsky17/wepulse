@@ -1344,21 +1344,6 @@ window.PanelAssetsAlert = function( $scope )
     _this._construtor();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Show user of the BO
 window.PanelAssetsTableResponsable = function( $scope, __config )
 {
