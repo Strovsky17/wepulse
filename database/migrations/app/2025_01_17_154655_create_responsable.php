@@ -12,13 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('app')->create('responsable', function (Blueprint $table) {
+        Schema::connection('app')->create('responsables', function (Blueprint $table) {
             $table->id();
             $table->string('name', 99);
             $table->string('email', 99);
             $table->integer('contact');
             $table->string('departmentcompany', 99);
             $table->timestamps();
+            $table->softDeletes('deleted_at');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('app')->dropIfExists('responsable');
+        Schema::connection('app')->dropIfExists('responsables');
     }
 };

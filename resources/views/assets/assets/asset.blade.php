@@ -182,7 +182,18 @@
             <!-- Responsable -->
             <div class='form-group col-md-12'>
                 <label>{!! __('register.responsable') !!}</label>
-                <input type="text" class="form-control" name='responsable' placeholder='{!!__("register.responsablePlaceHolder")!!}'/>
+                <div WepulseDrop name='responsable_id' action='update' required>
+                <div>
+                        <span></span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div>
+                        <div value=''>Nenhuma</div>
+                        @foreach($responsables as $r)
+                        <div value='{{$c->id}}'>{{$r->name}}</div>
+                        @endforeach
+                    </div>
+                </div>  
             </div>
 
             <!-- Extra field -->

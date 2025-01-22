@@ -28,6 +28,7 @@
             new PanelAssets( document.querySelector('.panel-assets'), {
                 data: {!! json_encode($assets) !!},
                 categories: {!! json_encode($categories) !!},
+                responsables: {!! json_encode($responsables) !!},
             });
         })
     </script>
