@@ -71,7 +71,7 @@ window.PanelAssetsTableFields = function( $scope, __config )
     // Initialize table
     this.initTable = () => {
 
-        this.table = new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( $scope.querySelector('.table'),{
             rowsPerPage: 10,
             perPage: false,
             search: false,
@@ -466,7 +466,7 @@ window.PanelAssets = function( $scope, __config )
     // Initialize table
     this.initTable = () => {
 
-        this.table = new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( $scope.querySelector('.table'),{
             rowsPerPage: 10,
             perPage: false,
             search: false,
@@ -602,7 +602,7 @@ window.PanelAssetsTableCategory = function( $scope, __config )
     // Initialize table
     this.initTable = () => {
 
-        this.table = new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( $scope.querySelector('.table'),{
             rowsPerPage: 10,
             perPage: false,
             search: false,
@@ -779,7 +779,7 @@ window.PanelAssetsTableEvents = function( $scope, __config )
             _this.show();
         }
 
-        this.table = new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( $scope.querySelector('.table'),{
             paginationUrl: 'assets/search/event',
             rowsPerPage: 10,
             perPage: false,
@@ -1133,7 +1133,7 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             date: window.tableLang.date,
             asset: window.tableLang.asset,
             description: window.tableLang.description,
-            status: window.tableLang.status
+            status: `<div class="text-center">${window.tableLang.status}</div>`
         };
 
         if( __config.asset_mode == 1 )
@@ -1152,7 +1152,7 @@ window.PanelAssetsTableAlert = function( $scope, __config )
         }
 
 
-        this.table = new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( $scope.querySelector('.table'),{
             paginationUrl: 'assets/search/alert',
             rowsPerPage: 10,
             perPage: false,
@@ -1164,11 +1164,11 @@ window.PanelAssetsTableAlert = function( $scope, __config )
             },
             data: __config.data,
             process_value_status: (v) => {
-                if( v == 1 )
+                if( v == 0 || v ==  null)
                     return `<div class="text-center text-danger">Pendente</div>`;
-                else if( v == 2 )
+                else if( v == 1 )
                     return `<div class="text-center text-warning">Em Andamento</div>`;
-                else if( v == 3 )
+                else if( v == 2 )
                     return `<div class="text-center text-success">Finalizado</div>`;
             },
             actions:[
@@ -1430,7 +1430,7 @@ window.PanelAssetsTableResponsable = function( $scope, __config )
     // Initialize table
     this.initTable = () => {
 
-        this.table = new SuperTable( document.querySelector('.table'),{
+        this.table = new SuperTable( $scope.querySelector('.table'),{
             rowsPerPage: 10,
             perPage: false,
             search: false,
